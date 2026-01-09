@@ -517,10 +517,6 @@ img {
     .tagline {
         font-size: 1.5rem;
     }
-
-    align-items: center;
-    color: var(--text-secondary);
-    background: linear-gradient(45deg, #111, #222);
 }
 
 .project-content {
@@ -810,9 +806,24 @@ img {
     font-weight: 600;
     color: var(--text-secondary);
     z-index: 1;
-    letter-spacing: 0.5px;
+    transition: var(--transition);
 }
 
-.contact-item:hover span {
-    color: #fff;
+
+
+
+
+/* Scroll Reveal Animation */
+/* Scroll Reveal Animation */
+.reveal {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+    /* Increased distance and hardware accel */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }
