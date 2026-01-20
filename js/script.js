@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                console.log('Revealing element:', entry.target);
                 entry.target.classList.add('active');
                 observer.unobserve(entry.target);
             }

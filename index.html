@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/resume.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -24,7 +25,8 @@
         <div class="container nav-container">
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#resume">Resume</a></li>
+                <li><a href="#Education">Education</a></li>
+                <li><a href="#Experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -53,27 +55,106 @@
                 </div>
             </div>
             <div class="hero-image">
-                <!-- Placeholder for profile Image -->
-                <div class="img-placeholder">
-                    <i class="fa-solid fa-user"></i>
+                <img src="assets/images/profile.jpg" alt="Shubham Puri" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="Education" class="section reveal">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="resume-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Bachelor of Science In Computer Science</h3>
+                            <h4>New York Institute of Technology, Manhattan, NY</h4>
+                            <ul>
+                                <li><strong>Relevant Coursework:</strong> Design and Algorithm, Computer Networks,
+                                    Artificial Intelligence, Adv Network Security.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About/Resume Section -->
-    <section id="resume" class="section reveal">
+    <!-- Experience Section -->
+    <section id="Experience" class="section reveal">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="resume-container">
+                <div class="timeline">
+                    <!-- Work Experience -->
+                    <div class="timeline-item">
+                        <span class="timeline-date">May 2025 - Present</span>
+                        <div class="timeline-content">
+                            <h3>Teen Tech Mentor</h3>
+                            <h4>Queens Library, Queens, NY</h4>
+                            <ul>
+                                <li>Managed and maintained all tech resources, such as 20 laptops and 15 iPads for the
+                                    Teen Center, ensuring devices were fully operational and accessible.</li>
+                                <li>Developed and led web development and coding sessions for teens.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">October 2024 - February 2025</span>
+                        <div class="timeline-content">
+                            <h3>Freelance AI Quality Analyst</h3>
+                            <h4>Outlier, Remote</h4>
+                            <ul>
+                                <li>Designed 25+ AI test prompts, identifying failure points that improved model
+                                    accuracy by 20%.</li>
+                                <li>Refined AI responses, enhancing adaptability and robustness.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">July 2024 - August 2024</span>
+                        <div class="timeline-content">
+                            <h3>Administrative Assistant Intern</h3>
+                            <h4>Joy the Bookkeeper, Brooklyn, NY</h4>
+                            <ul>
+                                <li>Processed and organized financial records, improving document retrieval time by 40%.
+                                </li>
+                                <li>Managed scheduling and correspondence, ensuring smooth daily office operations.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">September 2021 - May 2022</span>
+                        <div class="timeline-content">
+                            <h3>Tech Support</h3>
+                            <h4>Mouse Squad, Brooklyn, NY</h4>
+                            <ul>
+                                <li>Diagnosed and resolved technical issues, improving system efficiency and reducing
+                                    downtime by 30%.</li>
+                                <li>Managed hardware/software inventory to ensure staff had access to necessary tech
+                                    resources.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Resume Section -->
+    <section id="download-cv" class="section center-text">
         <div class="container">
             <h2 class="section-title">Resume</h2>
-            <div class="resume-container">
-                <div class="about-text">
-                    <h3>My Background</h3>
-                    <p>
-                        Below you can find my resume.It showcases my journey so far and what skills I have picked up
-                    </p>
-                    <a href="#" class="btn btn-primary" download>Download Resume <i
-                            class="fa-solid fa-download"></i></a>
-                </div>
+            <p style="margin-bottom: 2rem; color: var(--text-secondary);">
+                Grab a copy of my full resume below.
+            </p>
+            <div class="resume-download">
+                <a href="assets/resume.pdf" class="btn btn-primary" download="Shubham_Puri_Resume.pdf">Download PDF
+                    Resume <i class="fa-solid fa-download"></i></a>
             </div>
         </div>
     </section>
@@ -83,11 +164,10 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
+
                 <!-- Project 1 -->
                 <article class="project-card">
-                    <div class="project-image">
-                        <div class="img-placeholder-sm">Project Image</div>
-                    </div>
+
                     <div class="project-content">
                         <h3>Local Hangout & Event App</h3>
                         <p class="project-desc">A comprehensive React Native platform for real-time social event
@@ -118,9 +198,7 @@
 
                 <!-- Project 2 -->
                 <article class="project-card">
-                    <div class="project-image">
-                        <div class="img-placeholder-sm">Project Image</div>
-                    </div>
+
                     <div class="project-content">
                         <h3>Facial Recognition Software</h3>
                         <p class="project-desc">An automated attendance system leveraging computer vision for
@@ -150,9 +228,7 @@
 
                 <!-- Project 3 -->
                 <article class="project-card">
-                    <div class="project-image">
-                        <div class="img-placeholder-sm">Website Preview</div>
-                    </div>
+
                     <div class="project-content">
                         <h3>Personal Portfolio Website</h3>
                         <p class="project-desc">A modern, responsive portfolio site featuring interactive particle
@@ -176,8 +252,66 @@
                         <div class="project-links">
                             <a href="https://github.com/shubhampuri264-cell/Personal-website" target="_blank"><i
                                     class="fa-brands fa-github"></i> View Source</a>
-                            <a href="https://shubhampuri264-cell.github.io/Personal-website/" target="_blank"><i
-                                    class="fa-solid fa-external-link-alt"></i> Live Demo</a>
+
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card">
+
+                    <div class="project-content">
+                        <h3>Malware Detection App</h3>
+                        <p class="project-desc">A mobile application leveraging on-device machine learning for real-time
+                            malware detection.</p>
+
+                        <div class="case-study-details">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> On-device analysis (TensorFlow Lite)</li>
+                                <li><i class="fa-solid fa-check"></i> Cloud threat logging (Firebase)</li>
+                                <li><i class="fa-solid fa-check"></i> Cross-platform mobile architecture</li>
+                            </ul>
+                        </div>
+
+                        <ul class="tech-stack">
+                            <li>React Native</li>
+                            <li>TypeScript</li>
+                            <li>TensorFlow Lite</li>
+                            <li>Firebase</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/shubhampuri264-cell/Malware-Detection-App" target="_blank"><i
+                                    class="fa-brands fa-github"></i> View Source</a>
+                        </div>
+                    </div>
+                </article>
+                <!-- Project 5 -->
+                <article class="project-card">
+
+                    <div class="project-content">
+                        <h3>Distributed Risk Engine</h3>
+                        <p class="project-desc">A scalable distributed system for calculating financial risk metrics.
+                        </p>
+
+                        <div class="case-study-details">
+                            <h4>Key Features:</h4>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Distributed architecture</li>
+                                <li><i class="fa-solid fa-check"></i> Restful API with FastAPI</li>
+                                <li><i class="fa-solid fa-check"></i> Interactive dashboard</li>
+                            </ul>
+                        </div>
+
+                        <ul class="tech-stack">
+                            <li>Python</li>
+                            <li>FastAPI</li>
+                            <li>JavaScript</li>
+                            <li>HTML/CSS</li>
+                        </ul>
+                        <div class="project-links">
+                            <a href="https://github.com/shubhampuri264-cell/Distributed-Risk-Engine" target="_blank"><i
+                                    class="fa-brands fa-github"></i> View Source</a>
                         </div>
                     </div>
                 </article>
@@ -204,6 +338,8 @@
                     <h3>Backend & Database</h3>
                     <div class="skill-items">
                         <span class="skill-badge"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="skill-badge"><i class="fa-brands fa-java"></i> Java</span>
+                        <span class="skill-badge"><i class="fa-solid fa-server"></i> FastAPI</span>
                         <span class="skill-badge"><i class="fa-solid fa-database"></i> Supabase</span>
                         <span class="skill-badge"><i class="fa-solid fa-database"></i> SQL (PLpgSQL)</span>
                     </div>
@@ -212,9 +348,18 @@
                     <h3>AI & Tools</h3>
                     <div class="skill-items">
                         <span class="skill-badge"><i class="fa-solid fa-eye"></i> OpenCV</span>
-                        <span class="skill-badge"><i class="fa-solid fa-id-badge"></i> Face Recognition</span>
+                        <span class="skill-badge"><i class="fa-solid fa-robot"></i> AI Quality Analysis</span>
+                        <span class="skill-badge"><i class="fa-solid fa-terminal"></i> Prompt Engineering</span>
+                        <span class="skill-badge"><i class="fa-solid fa-window-maximize"></i> Tkinter</span>
                         <span class="skill-badge"><i class="fa-brands fa-git-alt"></i> Git</span>
-                        <span class="skill-badge"><i class="fa-solid fa-terminal"></i> Batchfile</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge"> English</span>
+                        <span class="skill-badge"> Nepali</span>
+                        <span class="skill-badge"> Hindi</span>
                     </div>
                 </div>
             </div>
