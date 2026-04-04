@@ -10,6 +10,11 @@
     scrollbar-width: thin;
     /* Firefox */
     scrollbar-color: var(--accent-secondary) rgba(255, 255, 255, 0.1);
+    /* Fix mobile scroll conflict — allow horizontal panning without intercepting page scroll */
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    /* Smooth snap between cards on mobile */
+    scroll-snap-type: x mandatory;
 }
 
 /* Custom Scrollbar for Webkit */
@@ -63,6 +68,8 @@
     /* Space for dot */
     flex-shrink: 0;
     /* Prevent shrinking */
+    scroll-snap-align: start;
+    /* Snap each card into view on mobile */
 }
 
 /* Timeline Dot */
