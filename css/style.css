@@ -637,6 +637,52 @@ img {
     transform: translate3d(0, 0, 0);
 }
 
+/* Video Modal */
+.video-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal-overlay.active {
+    display: flex;
+}
+
+.video-modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+}
+
+#modal-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.3);
+    display: block;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -2.5rem;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #22d3ee;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.video-modal-close:hover {
+    color: #fff;
+}
+
 /* Particles Background */
 #particles-js {
     position: fixed;

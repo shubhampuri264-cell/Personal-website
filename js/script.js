@@ -64,6 +64,27 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => revealObserver.observe(el));
 
     // Particles.js Configuration
+    // Video Modal
+    const videoModal = document.getElementById('video-modal');
+    const modalVideo = document.getElementById('modal-video');
+
+    document.querySelectorAll('.watch-demo-btn').forEach(btn => {
+        btn.addEventListener('click', e => {
+            e.preventDefault();
+            modalVideo.src = btn.dataset.video;
+            videoModal.classList.add('active');
+        });
+    });
+
+    function closeVideoModal() {
+        videoModal.classList.remove('active');
+        modalVideo.src = '';
+    }
+
+    document.querySelector('.video-modal-close').addEventListener('click', closeVideoModal);
+    videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
+
     if (window.particlesJS) {
         particlesJS('particles-js', {
             "particles": {
