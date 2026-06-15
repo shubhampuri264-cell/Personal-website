@@ -28,6 +28,7 @@
                 <li><a href="#Education">Education</a></li>
                 <li><a href="#Experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#hackathons">Hackathons</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -67,11 +68,12 @@
             <div class="resume-container">
                 <div class="timeline">
                     <div class="timeline-item">
+                        <span class="timeline-date">May 2026</span>
                         <div class="timeline-content">
                             <h3>Bachelor of Science In Computer Science</h3>
                             <h4>New York Institute of Technology, Manhattan, NY</h4>
                             <ul>
-                                <li><strong>Relevant Coursework:</strong> Data Structures, Design and Algorithms, Software Engineering, Artificial Intelligence, Operating Systems</li>
+                                <li><strong>Relevant Coursework:</strong> Data Structures, Design & Algorithms, Software Engineering, Artificial Intelligence, Computer Networks, System Design, Database</li>
                             </ul>
                         </div>
                     </div>
@@ -88,13 +90,26 @@
                 <div class="timeline">
                     <!-- Work Experience -->
                     <div class="timeline-item">
+                        <span class="timeline-date">February 2026 – April 2026</span>
+                        <div class="timeline-content">
+                            <h3>Software Engineering Intern</h3>
+                            <h4>Dreamerix, New York, NY (Hybrid)</h4>
+                            <ul>
+                                <li>Built and maintained RESTful API endpoints using Node.js/Express and Python, supporting user enrollment and authentication, course progress tracking, and certification workflows for 100+ active learners.</li>
+                                <li>Designed PostgreSQL schemas and optimized database queries in a pair-programming workflow with a senior engineer, shipping backend features across bi-weekly Agile sprints.</li>
+                                <li>Developed React components consuming REST APIs to display real-time learner data, bridging frontend and backend across full-stack feature delivery.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
                         <span class="timeline-date">May 2025 - Present</span>
                         <div class="timeline-content">
-                            <h3>Teen Tech Mentor</h3>
+                            <h3>Tech Mentor</h3>
                             <h4>Queens Library, Queens, NY</h4>
                             <ul>
-                                <li>Led STEM workshops in web development, Arduino, 3D printing, and Lego robotics for 15+ teens; taught Python for hardware programming and introduced AI tools and concepts.</li>
-                                <li>Designed a 6-week web development curriculum using HTML, CSS, and JavaScript — 3 students completed independent projects.</li>
+                                <li>Led STEM workshops in web dev, Arduino, 3D printing, and Lego robotics for 15+ teens; taught Python for hardware programming and introduced AI tools and concepts.</li>
+                                <li>Designed a 6-week web development curriculum where students completed independent projects.</li>
                             </ul>
                         </div>
                     </div>
@@ -102,25 +117,10 @@
                     <div class="timeline-item">
                         <span class="timeline-date">October 2024 - February 2025</span>
                         <div class="timeline-content">
-                            <h3>Freelance AI Quality Analyst</h3>
+                            <h3>AI Quality Analyst</h3>
                             <h4>Outlier, Remote</h4>
                             <ul>
-                                <li>Designed 25+ AI test prompts, identifying failure points that improved model
-                                    accuracy by 20%.</li>
-                                <li>Refined AI responses, enhancing adaptability and robustness.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">June 2024 - August 2024</span>
-                        <div class="timeline-content">
-                            <h3>Administrative Assistant Intern</h3>
-                            <h4>Joy the Bookkeeper, Brooklyn, NY</h4>
-                            <ul>
-                                <li>Processed and organized financial records, improving document retrieval time by 40%.
-                                </li>
-                                <li>Managed scheduling and correspondence, ensuring smooth daily office operations.</li>
+                                <li>Designed 25+ adversarial and edge-case prompts across code generation, reasoning, and factual accuracy tasks using Agile sprint-based evaluation cycles, contributing to a 20% improvement in model accuracy.</li>
                             </ul>
                         </div>
                     </div>
@@ -131,32 +131,8 @@
                             <h3>Tech Support</h3>
                             <h4>Mouse Squad, Brooklyn, NY</h4>
                             <ul>
-                                <li>Diagnosed and resolved technical issues, improving system efficiency and reducing
-                                    downtime by 30%.</li>
-                                <li>Managed hardware/software inventory to ensure staff had access to necessary tech
-                                    resources.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">February 2022 - January 2025</span>
-                        <div class="timeline-content">
-                            <h3>Crew Member</h3>
-                            <h4>McDonald's, New York, NY</h4>
-                            <ul>
-                                <li>Developed time management and customer service skills while balancing full-time coursework at NYIT.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">July 2022 - August 2022</span>
-                        <div class="timeline-content">
-                            <h3>Summer Staff</h3>
-                            <h4>Summer Youth Employment Program (SYEP), Queens, NY</h4>
-                            <ul>
-                                <li>Supported faculty in managing classroom environments for 15-25 students in a youth education program.</li>
+                                <li>Diagnosed hardware and software issues across a multi-device environment, reducing system downtime by 30%.</li>
+                                <li>Managed SQL-logged inventory for 50+ devices, ensuring uninterrupted staff access.</li>
                             </ul>
                         </div>
                     </div>
@@ -189,30 +165,22 @@
                 <!-- Project 1 -->
                 <article class="project-card">
                     <div class="project-content">
-                        <h3>Autonomous Code Review &amp; Testing Agent <span
-                                style="font-size:0.65rem; background: linear-gradient(135deg,#f59e0b,#ef4444); color:#fff; padding:2px 8px; border-radius:999px; vertical-align:middle; font-weight:600; letter-spacing:0.05em;">IN
-                                PROGRESS</span></h3>
-                        <p class="project-desc">An AI agent that autonomously generates, executes, and self-corrects
-                            test suites — then opens a GitHub PR with the passing results.</p>
+                        <h3>Code Review and Testing Agent</h3>
+                        <p class="project-desc">An AI-powered tool that automatically generates and runs unit tests for any GitHub repository in isolated Docker containers, then opens a pull request with results through a full-stack web dashboard.</p>
                         <div class="case-study-details">
                             <h4>Key Features:</h4>
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> LangGraph multi-step agent with self-correction
-                                    loop</li>
-                                <li><i class="fa-solid fa-check"></i> AST-aware test generation via tree-sitter &amp;
-                                    Gemini API</li>
-                                <li><i class="fa-solid fa-check"></i> Isolated Docker sandbox execution &amp; auto
-                                    GitHub PR</li>
+                                <li><i class="fa-solid fa-check"></i> LangGraph agent that auto-fixes failing tests until a coverage threshold is reached</li>
+                                <li><i class="fa-solid fa-check"></i> AST-aware test generation via tree-sitter across multiple languages</li>
+                                <li><i class="fa-solid fa-check"></i> Isolated Docker sandbox execution &amp; auto GitHub PR</li>
                             </ul>
                         </div>
                         <ul class="tech-stack">
                             <li>Python</li>
                             <li>LangGraph</li>
-                            <li>FastAPI</li>
+                            <li>tree-sitter</li>
+                            <li>GitHub API</li>
                             <li>Docker</li>
-                            <li>React</li>
-                            <li>Supabase</li>
-                            <li>Gemini API</li>
                         </ul>
                         <div class="project-links">
                             <a href="https://github.com/shubhampuri264-cell/Autonomous-Code-Review-Testing-Agent"
@@ -224,22 +192,21 @@
                 <!-- Project 2 -->
                 <article class="project-card">
                     <div class="project-content">
-                        <h3>Malware Detection App</h3>
-                        <p class="project-desc">A mobile application leveraging on-device machine learning for real-time
-                            malware detection.</p>
+                        <h3>AI-Powered Malware Detection App</h3>
+                        <p class="project-desc">A mobile app that scans Android apps for malware directly on-device using a neural network, requiring no internet connection and keeping all user data private.</p>
                         <div class="case-study-details">
                             <h4>Key Features:</h4>
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> On-device analysis (TensorFlow Lite)</li>
-                                <li><i class="fa-solid fa-check"></i> Cloud threat logging (Firebase)</li>
+                                <li><i class="fa-solid fa-check"></i> Fully on-device inference — no internet required</li>
+                                <li><i class="fa-solid fa-check"></i> Cloud pipeline to push model updates without app store releases</li>
                                 <li><i class="fa-solid fa-check"></i> Cross-platform mobile architecture</li>
                             </ul>
                         </div>
                         <ul class="tech-stack">
                             <li>React Native</li>
-                            <li>TypeScript</li>
                             <li>TensorFlow Lite</li>
                             <li>Firebase</li>
+                            <li>Python</li>
                         </ul>
                         <div class="project-links">
                             <a href="https://github.com/shubhampuri264-cell/Malware-Detection-App" target="_blank"><i
@@ -252,21 +219,21 @@
                 <!-- Project 3 -->
                 <article class="project-card">
                     <div class="project-content">
-                        <h3>Career Navigator</h3>
-                        <p class="project-desc">An AI-powered career guidance platform that helps users explore career
-                            paths, build resumes, and prepare for interviews.</p>
+                        <h3>CS Career Navigator</h3>
+                        <p class="project-desc">An AI-powered career assessment deployed to 21+ active users, delivering personalized CS career path recommendations and improving suggestion relevance by 40%.</p>
                         <div class="case-study-details">
                             <h4>Key Features:</h4>
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> AI-driven career path recommendations</li>
+                                <li><i class="fa-solid fa-check"></i> Personalized recommendation engine identifying career paths in a single session</li>
                                 <li><i class="fa-solid fa-check"></i> Full-stack web app with REST API backend</li>
+                                <li><i class="fa-solid fa-check"></i> Strong user retention after addressing mentorship gap across 20+ CS students</li>
                             </ul>
                         </div>
                         <ul class="tech-stack">
-                            <li>React</li>
                             <li>Python</li>
                             <li>FastAPI</li>
                             <li>Supabase</li>
+                            <li>REST API</li>
                             <li>Gemini API</li>
                         </ul>
                         <div class="project-links">
@@ -282,22 +249,22 @@
                 <!-- Project 4 -->
                 <article class="project-card">
                     <div class="project-content">
-                        <h3>Salon Website</h3>
-                        <p class="project-desc">A full-stack booking and service management platform for a modern hair
-                            salon, with real-time availability and admin controls.</p>
+                        <h3>Salon Booking Platform</h3>
+                        <p class="project-desc">A full-stack production booking platform built from scratch and actively used by a real salon business, with appointments, service browsing, and admin management.</p>
                         <div class="case-study-details">
                             <h4>Key Features:</h4>
                             <ul>
-                                <li><i class="fa-solid fa-check"></i> Real-time appointment booking system</li>
-                                <li><i class="fa-solid fa-check"></i> Admin dashboard for services &amp; stylist
-                                    management</li>
-                                <li><i class="fa-solid fa-check"></i> Supabase-powered backend with RLS security</li>
+                                <li><i class="fa-solid fa-check"></i> Requirements gathered directly from salon owner; deployed to production</li>
+                                <li><i class="fa-solid fa-check"></i> Admin dashboard for services &amp; stylist management</li>
+                                <li><i class="fa-solid fa-check"></i> OOP design patterns for a scalable, maintainable codebase</li>
                             </ul>
                         </div>
                         <ul class="tech-stack">
-                            <li>React</li>
-                            <li>JavaScript</li>
+                            <li>TypeScript</li>
+                            <li>Node.js</li>
                             <li>Supabase</li>
+                            <li>PostgreSQL</li>
+                            <li>REST API</li>
                             <li>Vercel</li>
                         </ul>
                         <div class="project-links">
@@ -450,6 +417,37 @@
             </div>
         </div>
     </section>
+    <!-- Hackathons Section -->
+    <section id="hackathons" class="section reveal">
+        <div class="container">
+            <h2 class="section-title">Hackathons & Competitions</h2>
+            <div class="resume-container">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-date">March 2026 &nbsp;|&nbsp; Team</span>
+                        <div class="timeline-content">
+                            <h3>Nepali Hackathon &mdash; Top 4 of 83 Teams</h3>
+                            <h4>Mental Health Web App</h4>
+                            <ul>
+                                <li>Built a mental health web app for stigma-free early detection and peer support; placed Top 4 out of 83 competing teams.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-date">Manhattan 2024 &nbsp;|&nbsp; Solo</span>
+                        <div class="timeline-content">
+                            <h3>NYIT Hackathon</h3>
+                            <h4>Facial Recognition Attendance System</h4>
+                            <ul>
+                                <li>Built a real-time facial recognition system using Python and OpenCV; extended into an automated attendance pipeline with identity verification.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="section reveal">
         <div class="container">
