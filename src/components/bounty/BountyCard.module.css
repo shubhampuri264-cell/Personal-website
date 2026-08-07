@@ -1,0 +1,433 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  border-radius: var(--r-md);
+  transition:
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+/*
+ * The frame is a separate layer purely so the poster tilt can rotate the
+ * chrome without rotating (and softening) the text on top of it.
+ * NOTE: no backdrop-filter here. Fifteen blurred cards re-blur on every scroll
+ * frame and put a mid-range phone at ~20fps — the fake glass gradient in
+ * tokens.css is visually near-identical and effectively free.
+ */
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--r-md);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-lift);
+  transform: rotate(var(--tilt, 0deg));
+  transition:
+    border-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+/* Paper grain + a torn top edge, drawn rather than downloaded. */
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(
+    -38deg,
+    rgba(255, 255, 255, 0.022) 0 2px,
+    transparent 2px 5px
+  );
+}
+
+.card:hover .frame,
+.card:focus-within .frame {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  box-shadow:
+    var(--shadow-lift),
+    var(--glow-md);
+  transform: rotate(0deg);
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translate3d(0, -6px, 0);
+}
+
+.focused .frame {
+  border-color: var(--accent);
+  box-shadow: var(--glow-lg);
+}
+
+/* ---- strip ------------------------------------------------------------- */
+
+.strip {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-5) 0;
+}
+
+.status {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line-strong);
+  color: var(--text-dim);
+}
+
+.status[data-status='in-progress'] {
+  color: var(--accent-warn);
+  border-color: color-mix(in srgb, var(--accent-warn) 45%, transparent);
+}
+
+.status[data-status='shipped'] {
+  color: var(--accent-3);
+  border-color: color-mix(in srgb, var(--accent-3) 40%, transparent);
+}
+
+/* ---- body -------------------------------------------------------------- */
+
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-4) var(--sp-5) var(--sp-5);
+  flex: 1;
+}
+
+.monogram {
+  position: absolute;
+  top: -0.4em;
+  right: var(--sp-4);
+  z-index: -1;
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: 6.5rem;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: var(--text);
+  opacity: 0.045;
+  pointer-events: none;
+  user-select: none;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-2);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Stretched link: the whole card is clickable, but the action buttons below
+   sit above it via z-index so they are not swallowed. */
+.titleLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: var(--r-md);
+}
+
+.titleLink:hover {
+  color: var(--accent);
+}
+
+.subtitle {
+  font-weight: var(--w-thin);
+  font-size: var(--step-1);
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  margin-top: var(--sp-1);
+}
+
+.metaSep {
+  opacity: 0.5;
+}
+
+/* ---- reward ------------------------------------------------------------ */
+
+.reward {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  margin: var(--sp-4) 0 var(--sp-3);
+  padding: var(--sp-3) var(--sp-2);
+  border-block: 1px dashed var(--line-strong);
+}
+
+.rewardValue {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-3);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  /* Glow lives on the reward only. Body copy never gets text-shadow —
+     it measurably hurts legibility at small sizes. */
+  text-shadow: 0 0 26px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.rewardUnit {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.rewardCaption {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+/* ---- copy -------------------------------------------------------------- */
+
+.summary {
+  color: var(--text-muted);
+  font-size: var(--step-0);
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.bullets li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-2);
+  align-items: start;
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.bulletIcon {
+  color: var(--accent-3);
+  margin-top: 3px;
+}
+
+/* ---- case study --------------------------------------------------------- */
+
+/* z-index lifts the whole disclosure above the stretched title link, which
+   otherwise covers the card and swallows the click that should open it. */
+.study {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+  padding-top: var(--sp-3);
+}
+
+.studySummary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  list-style: none;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+/* Both are needed: ::marker for standards browsers, ::-webkit-details-marker
+   for older WebKit, or a stray triangle shows up next to the chevron. */
+.studySummary::marker,
+.studySummary::-webkit-details-marker {
+  display: none;
+  content: '';
+}
+
+.studySummary:hover {
+  color: var(--accent-2);
+}
+
+.studyChevron {
+  transition: transform var(--dur) var(--ease);
+}
+
+.study[open] .studyChevron {
+  transform: rotate(180deg);
+}
+
+.studyBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+  padding-left: var(--sp-4);
+  border-left: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  font-size: var(--step--1);
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.studyHead {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: var(--w-mid);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: var(--sp-2);
+}
+
+/* Numbered because the order is the argument — these were tried in sequence,
+   and the third only makes sense as an answer to the first two. */
+.studySteps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  counter-reset: step;
+}
+
+.studySteps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sp-3);
+  align-items: baseline;
+}
+
+.studySteps li::before {
+  counter-increment: step;
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--accent);
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--sp-4);
+}
+
+.tech li {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+}
+
+/* ---- actions ----------------------------------------------------------- */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: auto;
+  padding-top: var(--sp-5);
+}
+
+.action {
+  position: relative;
+  z-index: 1; /* above the stretched title link */
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  padding: 7px 13px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text-muted);
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+
+.action:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.actionPrimary {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+/* ---- plain mode -------------------------------------------------------- */
+
+[data-mode='plain'] .frame {
+  transform: none;
+  background: var(--glass);
+  box-shadow: none;
+}
+
+[data-mode='plain'] .frame::before {
+  display: none;
+}
+
+[data-mode='plain'] .card:hover,
+[data-mode='plain'] .card:focus-within {
+  transform: none;
+}
+
+[data-mode='plain'] .monogram {
+  display: none;
+}
+
+[data-mode='plain'] .reward {
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: var(--sp-2);
+  text-align: left;
+  border-block: 0;
+  border-left: 3px solid var(--accent);
+  padding: 0 0 0 var(--sp-3);
+  margin: var(--sp-3) 0;
+}
+
+[data-mode='plain'] .rewardValue {
+  font-size: var(--step-1);
+  text-shadow: none;
+}
+
+[data-mode='plain'] .title {
+  text-transform: none;
+  font-size: var(--step-1);
+}
+
+@media (max-width: 640px) {
+  .monogram {
+    font-size: 4.5rem;
+  }
+}

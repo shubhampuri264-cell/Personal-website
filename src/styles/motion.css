@@ -1,0 +1,46 @@
+/*
+ * The animation off-switch, layer 1 of 3.
+ *
+ * Layer 1 — this file: a CSS blanket that neutralises every transition and
+ *           keyframe, applied identically to plain mode and to the OS-level
+ *           reduced-motion preference.
+ * Layer 2 — <MotionConfig reducedMotion="always"> in App.tsx, which disables
+ *           every Motion transform/opacity animation in the React tree.
+ * Layer 3 — expensive things (particles, door overlay) are not rendered at
+ *           all when motion is off. A hidden canvas still burns a rAF loop.
+ *
+ * Durations are .01ms rather than 0 so transitionend/animationend listeners
+ * still fire and nothing waits forever on a callback that never arrives.
+ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+[data-mode='plain'] *,
+[data-mode='plain'] *::before,
+[data-mode='plain'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/*
+ * NOTE: no @keyframes live in this file, on purpose.
+ *
+ * CSS Modules rewrites every `animation-name` inside a *.module.css to a hashed
+ * local name. A keyframes declared here, globally, is never hashed — so the
+ * reference and the declaration never meet, the animation silently does not
+ * run, and anything relying on it to fade in stays invisible.
+ *
+ * Keyframes therefore live in the module that uses them. If two modules ever
+ * need the same one, duplicate it — do not hoist it back up here.
+ */

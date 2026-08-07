@@ -1,556 +1,80 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-mode="bounty">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <meta name="description" content="Personal portfolio website showcasing my projects and skills.">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/resume.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    <title>Shubham Puri | Software Engineer</title>
+    <meta
+      name="description"
+      content="Shubham Puri is a software engineer in New York. Full-stack and AI product work: shipped apps to real users, production booking platforms, on-device ML, and agentic tooling."
+    />
+    <link rel="canonical" href="https://portfolio-mauve-seven-97.vercel.app/" />
 
-<body>
-    <div id="particles-js"></div>
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Shubham Puri | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Open to entry-level software engineering roles. Full-stack and AI product work: shipped apps to real users, production booking platforms, on-device ML, and agentic tooling."
+    />
+    <!--
+      Absolute, not relative. LinkedIn and Slack unfurlers resolve og:image
+      against nothing and silently drop a relative path, so the card renders
+      blank. Dimensions are declared so the scraper reserves the right box
+      before it has finished downloading the image.
+    -->
+    <meta property="og:image" content="https://portfolio-mauve-seven-97.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Shubham Puri, software engineer. Open to entry-level software engineering roles."
+    />
+    <meta property="og:url" content="https://portfolio-mauve-seven-97.vercel.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container nav-container">
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#Education">Education</a></li>
-                <li><a href="#Experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#hackathons">Hackathons</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <span class="greeting">Hello, I'm</span>
-                <h1 class="name">Shubham Puri</h1>
-                <h2 class="tagline"><span id="typing-text"></span><span class="cursor">|</span></h2>
-                <p class="description">
-                    I love to create new things and explore new technologies. I am always looking to expand what I know.
-                    Besides coding and doing leetcode. I enjoy reading novels, playing valorant and working out.
-                </p>
-                <div class="cta-group">
-                    <a href="#projects" class="btn btn-primary">View Work</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="assets/images/profile.jpg" alt="Shubham Puri" class="profile-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="Education" class="section reveal">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="resume-container">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="timeline-date">May 2026</span>
-                        <div class="timeline-content">
-                            <h3>Bachelor of Science In Computer Science</h3>
-                            <h4>New York Institute of Technology, Manhattan, NY</h4>
-                            <ul>
-                                <li><strong>Relevant Coursework:</strong> Data Structures, Design & Algorithms, Software Engineering, Artificial Intelligence, Computer Networks, System Design, Database</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="Experience" class="section reveal">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="resume-container">
-                <div class="timeline">
-                    <!-- Work Experience -->
-                    <div class="timeline-item">
-                        <span class="timeline-date">February 2026 – April 2026</span>
-                        <div class="timeline-content">
-                            <h3>Software Engineering Intern</h3>
-                            <h4>Dreamerix, New York, NY (Hybrid)</h4>
-                            <ul>
-                                <li>Built and maintained RESTful API endpoints using Node.js/Express and Python, supporting user enrollment and authentication, course progress tracking, and certification workflows for 100+ active learners.</li>
-                                <li>Designed PostgreSQL schemas and optimized database queries in a pair-programming workflow with a senior engineer, shipping backend features across bi-weekly Agile sprints.</li>
-                                <li>Developed React components consuming REST APIs to display real-time learner data, bridging frontend and backend across full-stack feature delivery.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">May 2025 - Present</span>
-                        <div class="timeline-content">
-                            <h3>Tech Mentor</h3>
-                            <h4>Queens Library, Queens, NY</h4>
-                            <ul>
-                                <li>Led STEM workshops in web dev, Arduino, 3D printing, and Lego robotics for 15+ teens; taught Python for hardware programming and introduced AI tools and concepts.</li>
-                                <li>Designed a 6-week web development curriculum where students completed independent projects.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">October 2024 - February 2025</span>
-                        <div class="timeline-content">
-                            <h3>AI Quality Analyst</h3>
-                            <h4>Outlier, Remote</h4>
-                            <ul>
-                                <li>Designed 25+ adversarial and edge-case prompts across code generation, reasoning, and factual accuracy tasks using Agile sprint-based evaluation cycles, contributing to a 20% improvement in model accuracy.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">September 2023 - April 2024</span>
-                        <div class="timeline-content">
-                            <h3>Tech Support</h3>
-                            <h4>Mouse Squad, Brooklyn, NY</h4>
-                            <ul>
-                                <li>Diagnosed hardware and software issues across a multi-device environment, reducing system downtime by 30%.</li>
-                                <li>Managed SQL-logged inventory for 50+ devices, ensuring uninterrupted staff access.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Resume Section -->
-    <section id="download-cv" class="section center-text">
-        <div class="container">
-            <h2 class="section-title">Resume</h2>
-            <p style="margin-bottom: 2rem; color: var(--text-secondary);">
-                Grab a copy of my full resume below.
-            </p>
-            <div class="resume-download">
-                <a href="assets/Shubham_P_CS_Resume.pdf" class="btn btn-primary"
-                    download="Shubham_P_CS_Resume.pdf">Download PDF
-                    Resume <i class="fa-solid fa-download"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section bg-alt reveal">
-        <div class="container">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-
-                <!-- Project 1 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Code Review and Testing Agent</h3>
-                        <p class="project-desc">An AI-powered tool that automatically generates and runs unit tests for any GitHub repository in isolated Docker containers, then opens a pull request with results through a full-stack web dashboard.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> LangGraph agent that auto-fixes failing tests until a coverage threshold is reached</li>
-                                <li><i class="fa-solid fa-check"></i> AST-aware test generation via tree-sitter across multiple languages</li>
-                                <li><i class="fa-solid fa-check"></i> Isolated Docker sandbox execution &amp; auto GitHub PR</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>Python</li>
-                            <li>LangGraph</li>
-                            <li>tree-sitter</li>
-                            <li>GitHub API</li>
-                            <li>Docker</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Autonomous-Code-Review-Testing-Agent"
-                                target="_blank"><i class="fa-brands fa-github"></i> View Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 2 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>AI-Powered Malware Detection App</h3>
-                        <p class="project-desc">A mobile app that scans Android apps for malware directly on-device using a neural network, requiring no internet connection and keeping all user data private.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Fully on-device inference — no internet required</li>
-                                <li><i class="fa-solid fa-check"></i> Cloud pipeline to push model updates without app store releases</li>
-                                <li><i class="fa-solid fa-check"></i> Cross-platform mobile architecture</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>React Native</li>
-                            <li>TensorFlow Lite</li>
-                            <li>Firebase</li>
-                            <li>Python</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Malware-Detection-App" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                            <a href="#" class="watch-demo-btn" data-video="https://www.youtube.com/embed/YyQnsWTmYIE?autoplay=1"><i class="fa-solid fa-circle-play"></i> Watch Demo</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 3 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>CS Career Navigator</h3>
-                        <p class="project-desc">An AI-powered career assessment deployed to 21+ active users, delivering personalized CS career path recommendations and improving suggestion relevance by 40%.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Personalized recommendation engine identifying career paths in a single session</li>
-                                <li><i class="fa-solid fa-check"></i> Full-stack web app with REST API backend</li>
-                                <li><i class="fa-solid fa-check"></i> Strong user retention after addressing mentorship gap across 20+ CS students</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>Python</li>
-                            <li>FastAPI</li>
-                            <li>Supabase</li>
-                            <li>REST API</li>
-                            <li>Gemini API</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/CareerNavigator" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                            <a href="https://career-navigator-one.vercel.app" target="_blank"><i
-                                    class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="watch-demo-btn" data-video="https://www.youtube.com/embed/e4RTvzfrFVk?autoplay=1"><i class="fa-solid fa-circle-play"></i> Watch Demo</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 4 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Salon Booking Platform</h3>
-                        <p class="project-desc">A full-stack production booking platform built from scratch and actively used by a real salon business, with appointments, service browsing, and admin management.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Requirements gathered directly from salon owner; deployed to production</li>
-                                <li><i class="fa-solid fa-check"></i> Admin dashboard for services &amp; stylist management</li>
-                                <li><i class="fa-solid fa-check"></i> OOP design patterns for a scalable, maintainable codebase</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>TypeScript</li>
-                            <li>Node.js</li>
-                            <li>Supabase</li>
-                            <li>PostgreSQL</li>
-                            <li>REST API</li>
-                            <li>Vercel</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/SalonWebsite" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                            <a href="https://icon-studio-nu.vercel.app" target="_blank"><i
-                                    class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                            <a href="#" class="watch-demo-btn" data-video="https://www.youtube.com/embed/nKB7OJ09o9g?autoplay=1"><i class="fa-solid fa-circle-play"></i> Watch Demo</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 5 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Local Hangout &amp; Event App</h3>
-                        <p class="project-desc">A comprehensive React Native platform for real-time social event
-                            discovery and safety.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Real-time event updates via Supabase</li>
-                                <li><i class="fa-solid fa-check"></i> Geolocation-based safety tracking</li>
-                                <li><i class="fa-solid fa-check"></i> Integrated user chat system</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>React Native</li>
-                            <li>TypeScript</li>
-                            <li>Supabase</li>
-                            <li>SQL</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Local-Hangout-Event" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 6 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Facial Recognition Software</h3>
-                        <p class="project-desc">An automated attendance system leveraging computer vision for
-                            high-accuracy ID scanning.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> 99% accuracy face encoding/matching</li>
-                                <li><i class="fa-solid fa-check"></i> Automated database logging</li>
-                                <li><i class="fa-solid fa-check"></i> Real-time video feed processing</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>Python</li>
-                            <li>OpenCV</li>
-                            <li>Face Recognition</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Facial-Recognition-software"
-                                target="_blank"><i class="fa-brands fa-github"></i> View Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 7 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Mental Health Web App</h3>
-                        <p class="project-desc">A bilingual, AI-powered mental health companion and crisis platform with
-                            anonymous community support.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> AI chatbot for crisis de-escalation (Gemini API)
-                                </li>
-                                <li><i class="fa-solid fa-check"></i> Real-time anonymous support groups via WebSockets
-                                </li>
-                                <li><i class="fa-solid fa-check"></i> Mood tracking dashboard with trend visualizations
-                                </li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>React</li>
-                            <li>JavaScript</li>
-                            <li>Supabase</li>
-                            <li>Gemini API</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Mental-Health-Web-App" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Project 8 -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Distributed Risk Engine</h3>
-                        <p class="project-desc">A scalable distributed system for calculating financial risk metrics.
-                        </p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Distributed architecture</li>
-                                <li><i class="fa-solid fa-check"></i> Restful API with FastAPI</li>
-                                <li><i class="fa-solid fa-check"></i> Interactive dashboard</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>Python</li>
-                            <li>FastAPI</li>
-                            <li>JavaScript</li>
-                            <li>HTML/CSS</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Distributed-Risk-Engine" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Personal Portfolio Website (remove if not needed) -->
-                <article class="project-card">
-                    <div class="project-content">
-                        <h3>Personal Portfolio Website</h3>
-                        <p class="project-desc">A modern, responsive portfolio site featuring interactive particle
-                            effects and hardware-accelerated animations.</p>
-                        <div class="case-study-details">
-                            <h4>Key Features:</h4>
-                            <ul>
-                                <li><i class="fa-solid fa-check"></i> Interactive Particles.js background</li>
-                                <li><i class="fa-solid fa-check"></i> SEO &amp; Performance optimized</li>
-                                <li><i class="fa-solid fa-check"></i> CD/CI Deployment via GitHub Pages</li>
-                            </ul>
-                        </div>
-                        <ul class="tech-stack">
-                            <li>HTML5</li>
-                            <li>CSS3</li>
-                            <li>JavaScript</li>
-                            <li>Particles.js</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://github.com/shubhampuri264-cell/Personal-website" target="_blank"><i
-                                    class="fa-brands fa-github"></i> View Source</a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-    <!-- Hackathons Section -->
-    <section id="hackathons" class="section reveal">
-        <div class="container">
-            <h2 class="section-title">Hackathons & Competitions</h2>
-            <div class="resume-container">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <span class="timeline-date">March 2026 &nbsp;|&nbsp; Team</span>
-                        <div class="timeline-content">
-                            <h3>Nepali Hackathon &mdash; Top 4 of 83 Teams</h3>
-                            <h4>Mental Health Web App</h4>
-                            <ul>
-                                <li>Built a mental health web app for stigma-free early detection and peer support; placed Top 4 out of 83 competing teams.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <span class="timeline-date">Manhattan 2024 &nbsp;|&nbsp; Solo</span>
-                        <div class="timeline-content">
-                            <h3>NYIT Hackathon</h3>
-                            <h4>Facial Recognition Attendance System</h4>
-                            <ul>
-                                <li>Built a real-time facial recognition system using Python and OpenCV; extended into an automated attendance pipeline with identity verification.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section reveal">
-        <div class="container">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages &amp; Frameworks</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="fa-brands fa-python"></i> Python</span>
-                        <span class="skill-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
-                        <span class="skill-badge"><i class="fa-brands fa-js"></i> TypeScript</span>
-                        <span class="skill-badge"><i class="fa-brands fa-java"></i> Java</span>
-                        <span class="skill-badge"><i class="fa-solid fa-database"></i> SQL</span>
-                        <span class="skill-badge"><i class="fa-solid fa-database"></i> PostgreSQL</span>
-                        <span class="skill-badge"><i class="fa-brands fa-react"></i> React</span>
-                        <span class="skill-badge"><i class="fa-brands fa-react"></i> React Native</span>
-                        <span class="skill-badge"><i class="fa-brands fa-node-js"></i> Node.js</span>
-                        <span class="skill-badge"><i class="fa-solid fa-server"></i> FastAPI</span>
-                        <span class="skill-badge"><i class="fa-brands fa-html5"></i> HTML / CSS</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools &amp; Platforms</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="fa-solid fa-database"></i> Supabase</span>
-                        <span class="skill-badge"><i class="fa-solid fa-fire"></i> Firebase</span>
-                        <span class="skill-badge"><i class="fa-brands fa-docker"></i> Docker</span>
-                        <span class="skill-badge"><i class="fa-brands fa-git-alt"></i> Git / GitHub</span>
-                        <span class="skill-badge"><i class="fa-solid fa-plug"></i> REST APIs</span>
-                        <span class="skill-badge"><i class="fa-solid fa-rotate"></i> CI/CD</span>
-                        <span class="skill-badge"><i class="fa-solid fa-up-right-from-square"></i> Vercel</span>
-                        <span class="skill-badge"><i class="fa-brands fa-figma"></i> Figma</span>
-                        <span class="skill-badge"><i class="fa-brands fa-atlassian"></i> Jira</span>
-                        <span class="skill-badge"><i class="fa-brands fa-google"></i> Google Suite</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>AI &amp; Data</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="fa-solid fa-diagram-project"></i> LangGraph</span>
-                        <span class="skill-badge"><i class="fa-solid fa-microchip"></i> TensorFlow Lite</span>
-                        <span class="skill-badge"><i class="fa-solid fa-brain"></i> Machine Learning</span>
-                        <span class="skill-badge"><i class="fa-solid fa-robot"></i> Gemini API</span>
-                        <span class="skill-badge"><i class="fa-solid fa-terminal"></i> Prompt Engineering</span>
-                        <span class="skill-badge"><i class="fa-solid fa-chart-line"></i> AI Quality Analysis</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Methodologies</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge"><i class="fa-solid fa-arrows-spin"></i> Agile</span>
-                        <span class="skill-badge"><i class="fa-solid fa-cubes"></i> OOP</span>
-                        <span class="skill-badge"><i class="fa-solid fa-layer-group"></i> Full Stack Dev</span>
-                        <span class="skill-badge"><i class="fa-solid fa-flask"></i> Unit Testing</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Spoken Languages</h3>
-                    <div class="skill-items">
-                        <span class="skill-badge">English</span>
-                        <span class="skill-badge">Nepali</span>
-                        <span class="skill-badge">Hindi</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-alt center-text reveal">
-        <div class="container contact-container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-info-grid">
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
-                    <span>spur245@gmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>347-280-4249</span>
-                </div>
-                <a href="https://www.linkedin.com/in/spuri-cs" target="_blank" class="contact-item">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <span>LinkedIn Profile</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- Main JS -->
-    <script src="js/script.js"></script>
-
-    <!-- Video Modal -->
-    <div id="video-modal" class="video-modal-overlay">
-        <div class="video-modal-container">
-            <button class="video-modal-close" aria-label="Close video">&times;</button>
-            <iframe id="modal-video" allowfullscreen frameborder="0"></iframe>
-        </div>
-    </div>
-</body>
-
+    <!--
+      Blocking mode script. Runs before any CSS so the correct skin paints on the
+      first frame — no flash of poster styling for someone who chose plain mode.
+      Also pre-empts a hydration mismatch if this app is ever prerendered.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('sp:mode');
+          if (stored !== 'bounty' && stored !== 'plain') {
+            stored = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'plain'
+              : 'bounty';
+          }
+          document.documentElement.dataset.mode = stored;
+        } catch (e) {
+          document.documentElement.dataset.mode = 'bounty';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: sans-serif; color: #f0fdf4; background: #050505">
+        <h1>Shubham Puri, Software Engineer</h1>
+        <p>
+          This site needs JavaScript for its navigation. The full resume is available as a PDF:
+          <a href="/Shubham_P_CS_Resume.pdf" style="color: #22d3ee">Download resume</a>.
+        </p>
+        <p>Email: spur245@gmail.com &middot; New York, NY</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

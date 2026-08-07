@@ -1,0 +1,400 @@
+/* Declared here, not in global motion.css — CSS Modules hashes every
+   animation-name in this file, so a globally-declared keyframes would resolve
+   to nothing and the animation would silently never run. */
+@keyframes sp-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes sp-cue {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate3d(0, 7px, 0);
+    opacity: 1;
+  }
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-gap, var(--sp-7));
+  /* svh, not vh — dynamic browser chrome on mobile makes vh overshoot, which
+     would push the scroll cue below the fold and make the doors read as a gate. */
+  min-height: calc(100svh - var(--nav-h));
+  padding-block: var(--hero-pad, var(--sp-7)) var(--hero-pad-end, var(--sp-6));
+  justify-content: center;
+}
+
+/* The short-viewport tightening lives at the BOTTOM of this file, after every
+   base rule. Same-specificity rules are resolved by source order, so a media
+   block placed above the rule it overrides silently loses. */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  max-width: 62ch;
+}
+
+.photo {
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  box-shadow: var(--glow-md);
+  margin-bottom: var(--sp-2);
+}
+
+/* align-items: flex-start, not center — this line wraps to two on a phone, and
+   centring would float the status dot into the middle of the block. */
+.eyebrow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-3);
+}
+
+.eyebrowSep,
+.eyebrowWhere {
+  color: var(--text-dim);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  /* Optically centred on the first line of text, not on the whole block. */
+  margin-top: 0.5em;
+  border-radius: 50%;
+  background: var(--accent-3);
+  box-shadow: 0 0 10px var(--accent-3);
+  animation: sp-pulse 2.4s var(--ease) infinite;
+}
+
+/* Extreme weight contrast — 900 display against 200 body — is the type
+   signature of this site. Uniform 400/600 everywhere reads as a template. */
+.name {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-4);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  background: linear-gradient(96deg, var(--text) 30%, var(--accent) 75%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  font-weight: var(--w-thin);
+  font-size: var(--step-2);
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.blurb {
+  color: var(--text-muted);
+  max-width: 54ch;
+  margin-top: var(--sp-2);
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-top: var(--sp-4);
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  box-shadow: var(--glow-sm);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.primaryCta:hover {
+  background: var(--accent);
+  color: var(--c-ink);
+  box-shadow: var(--glow-lg);
+}
+
+.social {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.socialLink {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+  color: var(--text-muted);
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.socialLink:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---- doors ------------------------------------------------------------- */
+
+.doorsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.doorsLabel {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.doors {
+  display: grid;
+  gap: var(--sp-3);
+  grid-template-columns: repeat(6, 1fr);
+}
+
+/* Six doors do not fit in a row on a phone. 2 columns, not shrink-to-illegible. */
+@media (max-width: 1024px) {
+  .doors {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    --hero-gap: var(--sp-4);
+    --hero-pad-end: var(--sp-4);
+  }
+
+  .ctaRow {
+    margin-top: var(--sp-2);
+  }
+
+  .doorsWrap {
+    gap: var(--sp-2);
+  }
+
+  .doors {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-2);
+  }
+
+  .photo {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* Narrow columns make the summary wrap to twice the lines — shrink it so
+     it still clears the fold alongside the doors and the cue. */
+  .blurb {
+    font-size: var(--step--1);
+    line-height: 1.4;
+  }
+
+  .tagline {
+    font-size: var(--step-1);
+  }
+
+  /* The availability line wraps to two lines at this width. It stays — it is
+     the highest-value line in the hero — so the space is taken back from the
+     photo, the door heights and the gaps instead. */
+  .eyebrow {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+  }
+
+  .dot {
+    margin-top: 0.42em;
+  }
+}
+
+/* ---- scroll cue -------------------------------------------------------- */
+
+.cue {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.cueIcon {
+  animation: sp-cue 2s var(--ease) infinite;
+}
+
+[data-mode='plain'] .name {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--text);
+  text-transform: none;
+  letter-spacing: -0.02em;
+}
+
+[data-mode='plain'] .photo {
+  box-shadow: none;
+}
+
+[data-mode='plain'] .hero {
+  min-height: 0;
+}
+
+[data-mode='plain'] .cue,
+[data-mode='plain'] .dot {
+  display: none;
+}
+
+/* ---- short-viewport tightening ----------------------------------------- */
+/*
+ * The scroll cue MUST stay above the fold. If it is cut off, the doors read as
+ * a gate and a recruiter who does not want to click one leaves — the single
+ * failure mode this whole layout exists to avoid. So the hero sheds height on
+ * short viewports instead of overflowing.
+ *
+ * These blocks are last in the file on purpose: they override base rules of
+ * equal specificity, and CSS resolves those ties by source order.
+ */
+
+@media (max-height: 1000px) {
+  .hero {
+    --hero-gap: var(--sp-5);
+    --hero-pad: var(--sp-5);
+  }
+
+  /* The blurb is the professional summary — it stays. Only its size gives. */
+  .blurb {
+    font-size: var(--step--1);
+  }
+}
+
+@media (max-height: 780px) {
+  .hero {
+    --hero-gap: var(--sp-4);
+    --hero-pad: var(--sp-4);
+    --hero-pad-end: var(--sp-3);
+  }
+
+  .photo {
+    width: 72px;
+    height: 72px;
+  }
+
+  .tagline {
+    font-size: var(--step-1);
+  }
+
+  /* Tighter tracking rather than a smaller size — the availability line has to
+     stay as readable as anything else on the page. */
+  .eyebrow {
+    letter-spacing: 0.06em;
+  }
+
+  .doorsWrap {
+    gap: var(--sp-2);
+  }
+
+  /* Matters most at <=1024 wide, where the doors are already on two rows and
+     this gap is being paid twice. */
+  .doors {
+    gap: var(--sp-2);
+  }
+
+  .ctaRow {
+    margin-top: var(--sp-3);
+  }
+}
+
+/* Small phones (iPhone SE and similar). The doors, the CTA and the cue all
+   survive; labels and the duplicate social row are what go. */
+@media (max-height: 700px) {
+  .hero {
+    --hero-gap: var(--sp-3);
+    --hero-pad: var(--sp-3);
+    --hero-pad-end: var(--sp-3);
+  }
+
+  .name {
+    font-size: var(--step-3);
+  }
+
+  .tagline {
+    font-size: var(--step-1);
+  }
+
+  /* The eyebrow is the availability line and survives every breakpoint — it is
+     the single thing on this page a recruiter came to find. Only its tracking
+     gives. The doors label goes; the doors are self-evident. */
+  .doorsLabel {
+    display: none;
+  }
+
+  .eyebrow {
+    letter-spacing: 0.06em;
+  }
+
+  /* Only at iPhone-SE height does the summary give way — and the resume
+     button one row up still leads to the full thing. */
+  .blurb {
+    display: none;
+  }
+
+  .photo {
+    width: 60px;
+    height: 60px;
+  }
+
+  /* 3x2 rather than 2x3 — one fewer row of doors is ~90px back. */
+  .doors {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-2);
+  }
+
+  /* The contact section carries these same links, so nothing is lost. */
+  .social {
+    display: none;
+  }
+}

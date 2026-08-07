@@ -1,0 +1,197 @@
+.slot {
+  perspective: 900px;
+}
+
+.door {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  min-height: clamp(6.5rem, 13vh, 10rem);
+  padding: var(--sp-4);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-strong);
+  background: var(--glass);
+  overflow: hidden;
+  transition:
+    border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.door[data-accent='cyan'] {
+  --door-accent: var(--c-cyan-400);
+}
+.door[data-accent='fuchsia'] {
+  --door-accent: var(--c-fuchsia-400);
+}
+.door[data-accent='green'] {
+  --door-accent: var(--c-mint-400);
+}
+
+/* The panel is the door face that cracks open on hover. 3D rotateY is
+   expensive on mobile GPUs, so below 768px this degrades to a 2D slide. */
+.panel {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)),
+    linear-gradient(var(--bg-raised), var(--bg-sunken));
+  border-right: 1px solid var(--line);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.seam {
+  position: absolute;
+  inset-block: 12%;
+  right: 0;
+  width: 2px;
+  background: linear-gradient(transparent, var(--door-accent), transparent);
+  opacity: 0.5;
+}
+
+/* Top-right, not mid-right: at mid-height it collides with long labels
+   ("Hackathons", "Experience") once the panel swings open. */
+.knob {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--door-accent);
+  box-shadow: 0 0 12px var(--door-accent);
+}
+
+.door:hover,
+.door:focus-visible {
+  border-color: var(--door-accent);
+  transform: translate3d(0, -5px, 0);
+  box-shadow: 0 0 32px -8px var(--door-accent);
+}
+
+.door:hover .panel,
+.door:focus-visible .panel {
+  transform: rotateY(-62deg);
+}
+
+.plate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  color: var(--door-accent);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.blurb {
+  font-size: var(--step--1);
+  font-weight: var(--w-thin);
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .slot {
+    perspective: none;
+  }
+
+  .door {
+    min-height: 6rem;
+    padding: var(--sp-3);
+  }
+
+  /* 3D rotateY is expensive on mobile GPUs — degrade to a 2D slide. */
+  .door:hover .panel,
+  .door:focus-visible .panel {
+    transform: translate3d(-88%, 0, 0);
+  }
+}
+
+/* Six doors stack to 2x3 on a phone. Drop the blurb so the whole hero,
+   scroll cue included, still fits above the fold. */
+@media (max-width: 620px) {
+  .door {
+    min-height: 2.9rem;
+    padding: var(--sp-2) var(--sp-3);
+    justify-content: center;
+  }
+
+  .blurb {
+    display: none;
+  }
+
+  .label {
+    font-size: var(--step-0);
+  }
+}
+
+/*
+ * 768-tall laptops and landscape tablets fall between the tall and the short
+ * breakpoints, and at <=1024 wide the doors are already on two rows. Two rows
+ * at the base 6.5rem is what pushes the scroll cue past the fold there.
+ *
+ * min-width guard: without it this would override the 2.9rem phone rule above
+ * on any tall-ish phone under 820px, making the doors *bigger* on the smallest
+ * screens. Media blocks of equal specificity are resolved by source order.
+ */
+@media (max-height: 820px) and (min-width: 621px) {
+  .door {
+    min-height: 5rem;
+  }
+}
+
+/* Short viewports pack the doors into 3x2 — see Hero.module.css. Tiles get
+   shorter and the count plate goes, so two rows fit in one row's old space. */
+@media (max-height: 700px) {
+  .door {
+    min-height: 3.25rem;
+    padding: var(--sp-2);
+    justify-content: center;
+  }
+
+  .count {
+    display: none;
+  }
+
+  .label {
+    font-size: var(--step--1);
+    letter-spacing: 0;
+  }
+}
+
+/* Plain mode: the doors become a plain, obvious link list. */
+[data-mode='plain'] .panel {
+  display: none;
+}
+
+[data-mode='plain'] .door {
+  min-height: 0;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--r-sm);
+}
+
+[data-mode='plain'] .door:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+[data-mode='plain'] .label {
+  text-transform: none;
+  font-size: var(--step-0);
+}

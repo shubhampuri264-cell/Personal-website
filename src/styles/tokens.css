@@ -1,0 +1,139 @@
+/*
+ * Design tokens. Three tiers: primitive -> semantic -> component.
+ * Every color, size and duration in the app resolves back to this file.
+ */
+
+:root {
+  /* ---- primitive: color ---------------------------------------------- */
+  --c-void: #030303;
+  --c-ink: #050505;
+  --c-ink-2: #0b0d0e;
+  --c-ink-3: #121517;
+
+  --c-mint-50: #f0fdf4;
+  --c-mint-200: #a7f3d0;
+  --c-mint-400: #4ade80;
+
+  --c-cyan-400: #22d3ee;
+  --c-cyan-600: #0891b2;
+  --c-fuchsia-400: #d946ef;
+  --c-fuchsia-600: #a21caf;
+  --c-amber-400: #fbbf24;
+
+  --c-paper: #e8e2d0;
+  --c-paper-shade: #cdc4ab;
+  --c-paper-ink: #1a1408;
+
+  /* ---- semantic: surface & text -------------------------------------- */
+  --bg: var(--c-ink);
+  --bg-raised: var(--c-ink-2);
+  --bg-sunken: var(--c-void);
+
+  --text: var(--c-mint-50);
+  --text-muted: var(--c-mint-200);
+  --text-dim: #7f9c92;
+
+  --accent: var(--c-cyan-400);
+  --accent-2: var(--c-fuchsia-400);
+  --accent-3: var(--c-mint-400);
+  --accent-warn: var(--c-amber-400);
+
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+
+  /* Fake glass. Cheap. Used on every card.
+     Real backdrop-filter is reserved for the navbar and the modal only —
+     it re-blurs every scroll frame and 15 blurred cards tanks mobile. */
+  --glass: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.055) 0%,
+      rgba(255, 255, 255, 0.015) 42%,
+      rgba(255, 255, 255, 0.04) 100%
+    ),
+    rgba(12, 15, 16, 0.86);
+
+  /* ---- semantic: elevation / glow ------------------------------------ */
+  --glow-sm: 0 0 12px rgba(34, 211, 238, 0.18);
+  --glow-md: 0 0 26px rgba(34, 211, 238, 0.26);
+  --glow-lg: 0 0 46px rgba(34, 211, 238, 0.34);
+  --glow-alt: 0 0 26px rgba(217, 70, 239, 0.3);
+  --shadow-lift: 0 18px 40px -18px rgba(0, 0, 0, 0.9);
+
+  /* ---- typography ----------------------------------------------------- */
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* Extreme weight contrast is the point — 200 against 900, never 400/500/600
+     everywhere. Generic weights read as template output. */
+  --w-thin: 200;
+  --w-normal: 300;
+  --w-mid: 600;
+  --w-black: 900;
+
+  --step--1: clamp(0.8125rem, 0.79rem + 0.11vw, 0.875rem);
+  --step-0: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.4rem);
+  --step-2: clamp(1.5rem, 1.34rem + 0.8vw, 2rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3rem);
+  --step-4: clamp(2.75rem, 1.9rem + 4.2vw, 5.5rem);
+
+  /* ---- space ---------------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4.5rem;
+  --sp-9: 7rem;
+
+  /* ---- shape ---------------------------------------------------------- */
+  --r-xs: 3px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 18px;
+  --r-pill: 999px;
+
+  /* ---- motion ---------------------------------------------------------- */
+  --dur-fast: 140ms;
+  --dur: 260ms;
+  --dur-slow: 520ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ---- layout ---------------------------------------------------------- */
+  --nav-h: 68px;
+  --content-max: 1180px;
+  --z-bg: 0;
+  --z-content: 1;
+  --z-nav: 800;
+  --z-door: 900;
+  --z-modal: 1000;
+}
+
+/*
+ * Plain mode. Same DOM, different skin: flat surfaces, hairline borders,
+ * no glow, no paper texture. A recruiter view that stays readable.
+ */
+[data-mode='plain'] {
+  --bg: #08090a;
+  --bg-raised: #0e1011;
+  --glass: #0e1011;
+
+  --glow-sm: none;
+  --glow-md: none;
+  --glow-lg: none;
+  --glow-alt: none;
+  --shadow-lift: none;
+
+  --line: rgba(255, 255, 255, 0.14);
+  --line-strong: rgba(255, 255, 255, 0.24);
+
+  --text-muted: #c9d6d0;
+  --text-dim: #93a49d;
+
+  --w-black: 700;
+  --w-thin: 300;
+}

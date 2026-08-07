@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  align-items: stretch;
+}
+
+.grid[data-density='wide'] {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 28rem), 1fr));
+}
+
+/* Reveal wraps each cell, so it has to carry the stretch itself. */
+.cell {
+  display: flex;
+}
+
+.cell > * {
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    gap: var(--sp-6);
+  }
+}

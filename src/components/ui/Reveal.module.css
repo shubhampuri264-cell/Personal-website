@@ -1,0 +1,41 @@
+/*
+ * Keyframes MUST be declared in the same module that references them.
+ * CSS Modules rewrites `animation-name` to a hashed local name in every
+ * *.module.css file, whether or not a matching @keyframes exists here — so a
+ * name defined in a global stylesheet resolves to nothing, the animation never
+ * runs, and the element sits at the base `opacity: 0` forever. Silent failure:
+ * no console error, content simply invisible.
+ */
+@keyframes sp-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.shown {
+  animation: sp-fade-up var(--dur-slow) var(--ease) var(--reveal-delay, 0ms) both;
+  will-change: auto;
+}
+
+/* Motion off: no animation, no delay, no chance of content stuck at opacity 0. */
+[data-mode='plain'] .reveal {
+  opacity: 1;
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    animation: none;
+  }
+}

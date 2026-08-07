@@ -1,0 +1,64 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-door);
+  /* Scenery. It must never eat a click. */
+  pointer-events: none;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.overlay[data-accent='cyan'] {
+  --door-accent: var(--c-cyan-400);
+}
+.overlay[data-accent='fuchsia'] {
+  --door-accent: var(--c-fuchsia-400);
+}
+.overlay[data-accent='green'] {
+  --door-accent: var(--c-mint-400);
+}
+
+.panel {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 50.5%;
+  background:
+    linear-gradient(100deg, rgba(255, 255, 255, 0.04), transparent 60%),
+    linear-gradient(var(--c-ink-2), var(--c-void));
+  will-change: transform;
+}
+
+.panelRight {
+  left: auto;
+  right: 0;
+  background:
+    linear-gradient(260deg, rgba(255, 255, 255, 0.04), transparent 60%),
+    linear-gradient(var(--c-ink-2), var(--c-void));
+}
+
+.edge {
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 2px;
+  background: linear-gradient(transparent, var(--door-accent), transparent);
+  box-shadow: 0 0 26px var(--door-accent);
+}
+
+.panelRight .edge {
+  right: auto;
+  left: 0;
+}
+
+.label {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-3);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--door-accent);
+  text-shadow: 0 0 40px var(--door-accent);
+}

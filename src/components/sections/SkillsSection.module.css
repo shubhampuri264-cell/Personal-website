@@ -1,0 +1,104 @@
+.grid {
+  display: grid;
+  gap: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.cell > * {
+  flex: 1;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  height: 100%;
+  padding: var(--sp-5);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--glass);
+  transition: border-color var(--dur) var(--ease);
+}
+
+.group[data-accent='cyan'] {
+  --group-accent: var(--c-cyan-400);
+}
+.group[data-accent='fuchsia'] {
+  --group-accent: var(--c-fuchsia-400);
+}
+.group[data-accent='green'] {
+  --group-accent: var(--c-mint-400);
+}
+
+.group:hover {
+  border-color: color-mix(in srgb, var(--group-accent) 45%, transparent);
+}
+
+.groupHead {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--line);
+}
+
+.groupTitle {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--group-accent);
+}
+
+.groupBlurb {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+/* Two columns, not three — the proficiency badge that used to sit in the third
+   was removed along with the `level` field it rendered. */
+.skill {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--sp-2) var(--sp-3);
+}
+
+.skillIcon {
+  color: var(--group-accent);
+  opacity: 0.85;
+}
+
+.skillName {
+  font-weight: var(--w-mid);
+  font-size: var(--step--1);
+  color: var(--text);
+}
+
+.skillUsed {
+  grid-column: 2 / -1;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-dim);
+  margin-top: -4px;
+}
+
+[data-mode='plain'] .groupTitle {
+  text-transform: none;
+  color: var(--text);
+}
+
+[data-mode='plain'] .skills {
+  gap: var(--sp-2);
+}
