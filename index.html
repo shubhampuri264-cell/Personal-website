@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-mode="bounty">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>Shubham Puri | Software Engineer</title>
+    <meta
+      name="description"
+      content="Shubham Puri is a software engineer in New York. Full-stack and AI product work: shipped apps to real users, production booking platforms, on-device ML, and agentic tooling."
+    />
+    <link rel="canonical" href="https://portfolio-mauve-seven-97.vercel.app/" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Shubham Puri | Software Engineer" />
+    <meta
+      property="og:description"
+      content="Open to entry-level software engineering roles. Full-stack and AI product work: shipped apps to real users, production booking platforms, on-device ML, and agentic tooling."
+    />
+    <!--
+      Absolute, not relative. LinkedIn and Slack unfurlers resolve og:image
+      against nothing and silently drop a relative path, so the card renders
+      blank. Dimensions are declared so the scraper reserves the right box
+      before it has finished downloading the image.
+    -->
+    <meta property="og:image" content="https://portfolio-mauve-seven-97.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Shubham Puri, software engineer. Open to entry-level software engineering roles."
+    />
+    <meta property="og:url" content="https://portfolio-mauve-seven-97.vercel.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Blocking mode script. Runs before any CSS so the correct skin paints on the
+      first frame — no flash of poster styling for someone who chose plain mode.
+      Also pre-empts a hydration mismatch if this app is ever prerendered.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('sp:mode');
+          if (stored !== 'bounty' && stored !== 'plain') {
+            stored = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'plain'
+              : 'bounty';
+          }
+          document.documentElement.dataset.mode = stored;
+        } catch (e) {
+          document.documentElement.dataset.mode = 'bounty';
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: sans-serif; color: #f0fdf4; background: #050505">
+        <h1>Shubham Puri, Software Engineer</h1>
+        <p>
+          This site needs JavaScript for its navigation. The full resume is available as a PDF:
+          <a href="/Shubham_P_CS_Resume.pdf" style="color: #22d3ee">Download resume</a>.
+        </p>
+        <p>Email: spur245@gmail.com &middot; New York, NY</p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

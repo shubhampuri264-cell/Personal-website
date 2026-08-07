@@ -1,0 +1,60 @@
+.section {
+  position: relative;
+  padding-block: var(--sp-9);
+  /* Offsets the sticky navbar for every scrollIntoView, so no JS anywhere in
+     the app has to do manual offset arithmetic. */
+  scroll-margin-top: var(--nav-h);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-6);
+  max-width: 60ch;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-3);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 3px;
+  margin-top: var(--sp-3);
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+.intro {
+  color: var(--text-muted);
+  font-weight: var(--w-thin);
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+
+[data-mode='plain'] .section {
+  padding-block: var(--sp-7);
+}
+
+[data-mode='plain'] .title {
+  text-transform: none;
+  font-size: var(--step-2);
+}
+
+[data-mode='plain'] .title::after {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding-block: var(--sp-8);
+  }
+}

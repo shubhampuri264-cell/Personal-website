@@ -1,0 +1,47 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--sp-5);
+  background: rgba(3, 3, 3, 0.86);
+  /* One of only two places real backdrop-filter is used — it is a single
+     full-screen surface that exists briefly, not fifteen scrolling cards. */
+  backdrop-filter: blur(8px);
+}
+
+.shell {
+  position: relative;
+  width: min(100%, 62rem);
+}
+
+.frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  box-shadow: var(--glow-md);
+  background: #000;
+}
+
+.close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--text-muted);
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.close:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}

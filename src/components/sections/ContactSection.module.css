@@ -1,0 +1,134 @@
+/* ---- primary action ----------------------------------------------------- */
+
+.primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-4);
+  padding: var(--sp-5) var(--sp-6);
+  border-radius: var(--r-md);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  background: var(--glass);
+}
+
+.primaryCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.primaryLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.primaryValue {
+  font-size: var(--step-1);
+  font-weight: var(--w-mid);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+/* The only filled button on the page. Everything else on this section is an
+   outline, so the eye lands here first without needing a label to say so. */
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 13px 26px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--c-ink);
+  box-shadow: var(--glow-md);
+  transition:
+    background-color var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease);
+}
+
+.primaryCta:hover {
+  background: transparent;
+  color: var(--accent);
+  box-shadow: var(--glow-lg);
+}
+
+/* ---- secondary ---------------------------------------------------------- */
+
+.grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.cell > * {
+  flex: 1;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  height: 100%;
+  padding: var(--sp-5);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--glass);
+  transition:
+    border-color var(--dur) var(--ease),
+    transform var(--dur) var(--ease);
+}
+
+.tile:hover {
+  border-color: var(--accent);
+  transform: translate3d(0, -5px, 0);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  color: var(--accent);
+  margin-bottom: var(--sp-2);
+  transition: color var(--dur) var(--ease);
+}
+
+.tile:hover .icon {
+  color: var(--accent-2);
+}
+
+.kind {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.value {
+  font-weight: var(--w-mid);
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+[data-mode='plain'] .tile:hover {
+  transform: none;
+}
