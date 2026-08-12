@@ -132,13 +132,30 @@
   color: var(--text-muted);
 }
 
+/* Eight sections is more than the row carries at its full tracking. Tighten the
+   links across the mid range rather than push the resume button off the edge or
+   bury half the nav behind a burger at 1200px. */
+@media (max-width: 1280px) {
+  .link {
+    padding: 8px 6px;
+    letter-spacing: 0.06em;
+  }
+
+  .linkActive::after {
+    left: 6px;
+    right: 6px;
+  }
+}
+
 @media (max-width: 1080px) {
   .brandName {
     display: none;
   }
 }
 
-@media (max-width: 900px) {
+/* 1000px, not 900px: that is where eight section links stop fitting alongside
+   the brand and the resume button even at the tightened tracking above. */
+@media (max-width: 1000px) {
   .burger {
     display: grid;
   }

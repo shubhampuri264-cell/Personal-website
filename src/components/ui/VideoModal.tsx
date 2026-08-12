@@ -1,12 +1,15 @@
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useBodyScrollLock, useFocusTrap } from '@/hooks/useMisc'
+import { cn } from '@/lib/cn'
 import { Icon } from '@/lib/icons'
 import styles from './VideoModal.module.css'
 
 interface VideoModalProps {
   youtubeId: string | null
   title: string
+  /** Vertical recording (a Short, a phone capture) — opens 9:16, not 16:9. */
+  portrait?: boolean
   onClose: () => void
 }
 
@@ -18,7 +21,7 @@ interface VideoModalProps {
  * Chrome blocks it without the attribute, which is why the old version
  * silently opened to a still frame.
  */
-export function VideoModal({ youtubeId, title, onClose }: VideoModalProps) {
+export function VideoModal({ youtubeId, title, portrait, onClose }: VideoModalProps) {
   const ref = useRef<HTMLDivElement>(null)
   const open = Boolean(youtubeId)
 
@@ -48,14 +51,14 @@ export function VideoModal({ youtubeId, title, onClose }: VideoModalProps) {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className={styles.shell} ref={ref}>
+      <div className={cn(styles.shell, portrait && styles.shellPortrait)} ref={ref}>
         <button type="button" className={styles.close} onClick={onClose} autoFocus>
           <Icon name="close" size={20} />
           <span className="sp-visually-hidden">Close video</span>
         </button>
 
         <iframe
-          className={styles.frame}
+          className={cn(styles.frame, portrait && styles.framePortrait)}
           src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
           title={`${title} demo`}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"

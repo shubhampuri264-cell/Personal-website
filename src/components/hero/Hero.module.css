@@ -188,16 +188,20 @@
   color: var(--text-dim);
 }
 
+/* auto-fit rather than a fixed count: the door list is data, and hardcoding it
+   here means every new section silently squeezes the row. 7.5rem is the width
+   below which the longest label starts wrapping. */
 .doors {
   display: grid;
   gap: var(--sp-3);
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
 }
 
-/* Six doors do not fit in a row on a phone. 2 columns, not shrink-to-illegible. */
+/* Eight doors do not fit in a row on a phone. 4 then 2 columns, not
+   shrink-to-illegible. */
 @media (max-width: 1024px) {
   .doors {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 

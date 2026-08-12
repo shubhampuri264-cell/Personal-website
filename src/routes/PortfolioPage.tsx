@@ -9,6 +9,8 @@ import { ProjectsSection } from '@/components/sections/ProjectsSection'
 import { SkillsSection } from '@/components/sections/SkillsSection'
 import { EducationSection } from '@/components/sections/EducationSection'
 import { HackathonsSection } from '@/components/sections/HackathonsSection'
+import { HardwareSection } from '@/components/sections/HardwareSection'
+import { HobbiesSection } from '@/components/sections/HobbiesSection'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { useSectionRegistry } from '@/context/SectionRegistry'
 import { useRouteScroll } from '@/hooks/useRouteScroll'
@@ -69,6 +71,8 @@ export function PortfolioPage() {
         <SkillsSection />
         <EducationSection />
         <HackathonsSection focusedSlug={sectionId === 'hackathons' ? detailSlug : null} />
+        <HardwareSection />
+        <HobbiesSection />
         <ContactSection />
       </main>
 

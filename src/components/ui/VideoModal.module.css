@@ -25,6 +25,25 @@
   background: #000;
 }
 
+/* A vertical recording in the 16:9 frame is a thumbnail between two black
+   bars. Size the portrait one off the viewport height instead — height is the
+   binding constraint for 9:16, never width. */
+.shellPortrait {
+  width: auto;
+}
+
+/* 9:20, not 9:16 — these are phone screen captures, and a modern phone screen
+   is 20:9. A 9:16 frame would put thin bars back on the top and bottom. */
+.framePortrait {
+  aspect-ratio: 9 / 20;
+  width: auto;
+  max-width: min(100%, 22rem);
+  height: calc(100vh - 8rem);
+  max-height: 44rem;
+  display: block;
+  margin-inline: auto;
+}
+
 .close {
   position: absolute;
   top: -46px;

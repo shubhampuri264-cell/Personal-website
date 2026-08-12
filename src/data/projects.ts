@@ -29,7 +29,11 @@ export const projects: Project[] = [
       'Made the retention loop and the revenue loop the same system: XP, quests and an avatar that evolves with training, with cosmetics as the paid unlock.',
     ],
     tech: ['React Native', 'Expo', 'FastAPI', 'PostgreSQL', 'Groq', 'RevenueCat', 'Claude Code'],
-    links: [{ kind: 'github', label: 'View Source', href: `${GH}/Agon`, external: true }],
+    links: [
+      { kind: 'github', label: 'View Source', href: `${GH}/Agon`, external: true },
+      { kind: 'demo', label: 'Watch Demo', href: '2zBenlABcxA', portrait: true },
+    ],
+    media: { youtubeId: '2zBenlABcxA' },
     featured: true,
     rank: 1,
     status: 'in-progress',

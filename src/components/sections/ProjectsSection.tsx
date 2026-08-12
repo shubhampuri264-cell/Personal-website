@@ -7,7 +7,7 @@ import { CompactWorkList } from '@/components/bounty/CompactWorkList'
 import { VideoModal } from '@/components/ui/VideoModal'
 
 export function ProjectsSection({ focusedSlug }: { focusedSlug: string | null }) {
-  const [video, setVideo] = useState<{ id: string; title: string } | null>(null)
+  const [video, setVideo] = useState<{ id: string; title: string; portrait?: boolean } | null>(null)
 
   return (
     <Section
@@ -22,7 +22,7 @@ export function ProjectsSection({ focusedSlug }: { focusedSlug: string | null })
         items={featuredProjects}
         sectionId="projects"
         focusedSlug={focusedSlug}
-        onWatchDemo={(id, title) => setVideo({ id, title })}
+        onWatchDemo={(id, title, portrait) => setVideo({ id, title, portrait })}
       />
 
       <CompactWorkList items={moreProjects} />
@@ -30,6 +30,7 @@ export function ProjectsSection({ focusedSlug }: { focusedSlug: string | null })
       <VideoModal
         youtubeId={video?.id ?? null}
         title={video?.title ?? ''}
+        portrait={video?.portrait}
         onClose={() => setVideo(null)}
       />
     </Section>

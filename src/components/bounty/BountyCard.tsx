@@ -31,7 +31,7 @@ interface BountyCardProps {
   sectionId: SectionId
   /** True when the URL deep-links to this item. */
   focused?: boolean
-  onWatchDemo?: (youtubeId: string, title: string) => void
+  onWatchDemo?: (youtubeId: string, title: string, portrait?: boolean) => void
 }
 
 function monogram(title: string): string {
@@ -203,7 +203,7 @@ export function BountyCard({ item, sectionId, focused, onWatchDemo }: BountyCard
               <button
                 type="button"
                 className={cn(styles.action, styles.actionPrimary)}
-                onClick={() => onWatchDemo(demoLink.href, item.title)}
+                onClick={() => onWatchDemo(demoLink.href, item.title, demoLink.portrait)}
               >
                 <Icon name="play" size={13} />
                 {demoLink.label}

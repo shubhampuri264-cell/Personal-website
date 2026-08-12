@@ -19,6 +19,8 @@ export const SECTION_ORDER: SectionId[] = [
   'skills',
   'education',
   'hackathons',
+  'hardware',
+  'hobbies',
   'contact',
 ]
 

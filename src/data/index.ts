@@ -2,6 +2,8 @@ import { doors } from './doors'
 import { certifications, education } from './education'
 import { experience } from './experience'
 import { hackathons } from './hackathons'
+import { hardwareGroups } from './hardware'
+import { hobbyGroups } from './hobbies'
 import { profile } from './profile'
 import { projects } from './projects'
 import { skillGroups } from './skills'
@@ -14,6 +16,8 @@ export {
   education,
   experience,
   hackathons,
+  hardwareGroups,
+  hobbyGroups,
   profile,
   projects,
   skillGroups,

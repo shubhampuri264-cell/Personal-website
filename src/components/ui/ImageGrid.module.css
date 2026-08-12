@@ -1,0 +1,113 @@
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.group[data-accent='cyan'] {
+  --group-accent: var(--c-cyan-400);
+}
+.group[data-accent='fuchsia'] {
+  --group-accent: var(--c-fuchsia-400);
+}
+.group[data-accent='green'] {
+  --group-accent: var(--c-mint-400);
+}
+
+.groupHead {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-bottom: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.groupTitle {
+  font-family: var(--font-display);
+  font-weight: var(--w-black);
+  font-size: var(--step-1);
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--group-accent);
+}
+
+.groupBlurb {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+.empty {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+}
+
+.grid {
+  display: grid;
+  gap: var(--sp-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+}
+
+/* The cap is what stops a one-photo group from blowing its single tile up to
+   the full container width. auto-fit gives that group one full-width track;
+   the tile inside it stays a tile. */
+.cell {
+  display: flex;
+  max-width: 17rem;
+}
+
+.cell > * {
+  flex: 1;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  text-align: left;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--glass);
+  cursor: pointer;
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.tile:hover,
+.tile:focus-visible {
+  border-color: color-mix(in srgb, var(--group-accent) 45%, transparent);
+  background: color-mix(in srgb, var(--group-accent) 6%, var(--glass));
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  /* The files are already subjects fitted to a transparent square, so contain
+     never letterboxes in practice — it only guarantees nothing gets clipped if
+     one is ever regenerated at a different ratio. */
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+  /* The cutouts are transparent, and three of the prints are matte black. On a
+     near-black card they read as a hole. This lifts the area behind the subject
+     just enough to give a dark object an edge, without drawing a box. */
+  background: radial-gradient(
+    circle at 50% 45%,
+    rgba(255, 255, 255, 0.09),
+    rgba(255, 255, 255, 0.02) 55%,
+    transparent 75%
+  );
+}
+
+.caption {
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+[data-mode='plain'] .groupTitle {
+  text-transform: none;
+  color: var(--text);
+}

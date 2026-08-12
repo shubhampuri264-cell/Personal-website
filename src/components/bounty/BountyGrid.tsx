@@ -7,7 +7,7 @@ interface BountyGridProps {
   items: BountyItem[]
   sectionId: SectionId
   focusedSlug?: string | null
-  onWatchDemo?: (youtubeId: string, title: string) => void
+  onWatchDemo?: (youtubeId: string, title: string, portrait?: boolean) => void
   /** `wide` gives each poster more room — used for experience. */
   density?: 'default' | 'wide'
 }

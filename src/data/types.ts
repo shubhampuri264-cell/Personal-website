@@ -28,6 +28,8 @@ export type SectionId =
   | 'skills'
   | 'education'
   | 'hackathons'
+  | 'hardware'
+  | 'hobbies'
   | 'contact'
 
 export interface DateRange {
@@ -54,6 +56,12 @@ export interface Link {
   label: string
   href: string
   external?: boolean
+  /**
+   * `demo` links only. Set when the recording is vertical (a YouTube Short, a
+   * phone screen capture) so the modal opens 9:16 instead of pillarboxing a
+   * portrait video inside a 16:9 frame.
+   */
+  portrait?: boolean
 }
 
 /** The headline number on a poster. Always present — every item earns one. */
@@ -189,6 +197,31 @@ export interface SkillGroup {
   blurb: string
   accent: 'cyan' | 'fuchsia' | 'green'
   skills: Skill[]
+}
+
+/**
+ * A photo of something physical. Two sizes, because a 700px tile has no business
+ * downloading the 1400px file the lightbox needs.
+ *
+ * `alt` is never a copy of `caption` — the caption says what the thing is, the
+ * alt describes what you would see, and a screen reader gets both.
+ */
+export interface GalleryImage {
+  id: string
+  /** Grid tile source, 700x525. */
+  thumb: string
+  /** Lightbox source, 1400x1050. */
+  full: string
+  caption: string
+  alt: string
+}
+
+export interface GalleryGroup {
+  id: string
+  label: string
+  blurb: string
+  accent: 'cyan' | 'fuchsia' | 'green'
+  items: GalleryImage[]
 }
 
 export interface Door {
