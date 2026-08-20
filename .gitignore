@@ -29,3 +29,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Scratch sandbox for scripts/prep-gallery-images.mjs. Pulls in sharp and
+# onnxruntime, which have no business in the site's own dependency tree.
+.imgprep/

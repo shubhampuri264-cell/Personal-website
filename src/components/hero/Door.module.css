@@ -1,15 +1,32 @@
+/*
+ * container-type, so the label below can size itself off the tile it sits in
+ * rather than off the viewport. The tile width is set by the grid, which is set
+ * by how many doors exist — a viewport-relative font size cannot know that, and
+ * that mismatch is what clipped "EXPERIENCE" to "EXPERIENC" behind the door's
+ * overflow: hidden.
+ */
 .slot {
   perspective: 900px;
+  container-type: inline-size;
 }
 
 .door {
+  /*
+   * Padding lives in a variable because the label's font size has to subtract
+   * it: cqi measures the whole tile, the text only gets what the padding leaves,
+   * and that leftover is a smaller share of a narrow tile than of a wide one.
+   * Any breakpoint that changes the padding must change these, not `padding`.
+   */
+  --door-pad-x: var(--sp-3);
+  --door-pad-y: var(--sp-4);
+
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
   min-height: clamp(6.5rem, 13vh, 10rem);
-  padding: var(--sp-4);
+  padding: var(--door-pad-y) var(--door-pad-x);
   border-radius: var(--r-md);
   border: 1px solid var(--line-strong);
   background: var(--glass);
@@ -91,17 +108,35 @@
   color: var(--door-accent);
 }
 
+/*
+ * Sized off the tile, not the viewport. Eight doors share one row, so the tile
+ * width is a function of how many doors exist — something a vw-based size cannot
+ * see, which is how "EXPERIENCE" ended up rendering as "EXPERIENC" behind the
+ * door's `overflow: hidden`.
+ *
+ * 7.35 is measured, not guessed: the longest label ("HACKATHONS") sets 7.01em
+ * wide in black uppercase Outfit at this tracking, and the remainder is slack
+ * for sub-pixel rounding and for a fallback font metric that differs from
+ * Outfit's. The old fixed size stays as the ceiling, so a roomy tile is
+ * untouched and looks exactly as it did before.
+ */
 .label {
   font-family: var(--font-display);
   font-weight: var(--w-black);
-  font-size: var(--step-1);
+  font-size: clamp(0.6rem, calc((100cqi - var(--door-pad-x) * 2) / 7.35), var(--step-1));
   letter-spacing: -0.01em;
   text-transform: uppercase;
   line-height: 1.1;
 }
 
+/*
+ * Tile-relative for the same reason as the label, but with a bigger divisor so
+ * it stays a fixed step below it. A fixed size here would sit within a pixel of
+ * the shrunk label on a narrow tile, and a heading that is the same size as its
+ * own subtitle stops reading as a heading.
+ */
 .blurb {
-  font-size: var(--step--1);
+  font-size: clamp(0.6rem, calc((100cqi - var(--door-pad-x) * 2) / 9.4), var(--step--1));
   font-weight: var(--w-thin);
   color: var(--text-muted);
 }
@@ -112,8 +147,8 @@
   }
 
   .door {
+    --door-pad-y: var(--sp-3);
     min-height: 6rem;
-    padding: var(--sp-3);
   }
 
   /* 3D rotateY is expensive on mobile GPUs — degrade to a 2D slide. */
@@ -127,8 +162,8 @@
    scroll cue included, still fits above the fold. */
 @media (max-width: 620px) {
   .door {
+    --door-pad-y: var(--sp-2);
     min-height: 2.9rem;
-    padding: var(--sp-2) var(--sp-3);
     justify-content: center;
   }
 
@@ -137,7 +172,7 @@
   }
 
   .label {
-    font-size: var(--step-0);
+    font-size: clamp(0.6rem, calc((100cqi - var(--door-pad-x) * 2) / 7.35), var(--step-0));
   }
 }
 
@@ -160,8 +195,9 @@
    shorter and the count plate goes, so two rows fit in one row's old space. */
 @media (max-height: 700px) {
   .door {
+    --door-pad-x: var(--sp-2);
+    --door-pad-y: var(--sp-2);
     min-height: 3.25rem;
-    padding: var(--sp-2);
     justify-content: center;
   }
 
@@ -170,7 +206,7 @@
   }
 
   .label {
-    font-size: var(--step--1);
+    font-size: clamp(0.6rem, calc((100cqi - var(--door-pad-x) * 2) / 7.35), var(--step--1));
     letter-spacing: 0;
   }
 }
@@ -181,8 +217,9 @@
 }
 
 [data-mode='plain'] .door {
+  --door-pad-x: var(--sp-4);
+  --door-pad-y: var(--sp-3);
   min-height: 0;
-  padding: var(--sp-3) var(--sp-4);
   border-radius: var(--r-sm);
 }
 
@@ -193,5 +230,5 @@
 
 [data-mode='plain'] .label {
   text-transform: none;
-  font-size: var(--step-0);
+  font-size: clamp(0.6rem, calc((100cqi - var(--door-pad-x) * 2) / 6.4), var(--step-0));
 }

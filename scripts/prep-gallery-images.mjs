@@ -11,7 +11,15 @@
  *
  *   mkdir -p .imgprep && cd .imgprep
  *   npm init -y && npm pkg set type=module
+ *   test -f package.json || exit 1   # see below
  *   npm i sharp @imgly/background-removal-node
+ *
+ * Check that `.imgprep/package.json` exists before installing. npm walks up
+ * looking for one, so if `npm init` did not land, `npm i sharp` writes itself
+ * into the site's own package.json and lockfile instead.
+ *
+ * `@imgly/background-removal-node` is only needed for the cutout jobs; the
+ * photo jobs (`cutout: false`) run on sharp alone.
  *   node ../scripts/prep-gallery-images.mjs [id ...]
  *
  * With no arguments it rebuilds everything; with ids it rebuilds only those.
@@ -20,7 +28,6 @@
  * a changed photo under an existing name will be served stale. Give a re-crop a
  * new id and update the matching entry in src/data/.
  */
-import { removeBackground } from '@imgly/background-removal-node'
 import sharp from 'sharp'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -32,6 +39,10 @@ const PUBLIC = path.resolve(import.meta.dirname, '..', 'public', 'images')
 // the photo holds a second subject the model has no way to know is unwanted.
 // `alphaFloor` is raised where it left a translucent ghost of something behind
 // the subject (a bag, an instruction sheet, a parts bin).
+// `cutout: false` skips the model entirely and keeps the photo whole: the
+// letterbox bars are measured off and dropped, then the frame is cover-cropped
+// to the same square canvas the cutouts land on, so both kinds of asset drop
+// into the same grid without the CSS knowing the difference.
 const JOBS = [
   { id: 'arduino-redboard-chassis', out: 'hardware', src: `${DL}/Arduino.jpeg`, alphaFloor: 140 },
   {
@@ -90,9 +101,25 @@ const JOBS = [
     src: `${DL}/Legos & Robotics/image-20250923-232223-d336211a.jpeg`,
     alphaFloor: 140,
   },
-  // TODO: point `src` at the PC build photo once it lands in Downloads, then
-  // uncomment the matching item in src/data/hobbies.ts.
-  // { id: 'pc-build', out: 'hobbies', src: `${DL}/PC.jpeg` },
+  /*
+   * The PC photos take the `cutout: false` path. Cutting the background out of
+   * these would delete the build: the case, the glass and the light spilling
+   * onto the panels ARE the subject, and a floating motherboard on transparency
+   * is not a picture of a PC. They are screenshots rather than camera files, so
+   * they arrive letterboxed instead of EXIF-rotated.
+   */
+  {
+    id: 'pc-full-build',
+    out: 'hobbies',
+    src: `${DL}/IMG_8621.png`,
+    cutout: false,
+    // Drops the shelf and the box of envelopes sitting above the case. The
+    // square crop alone leaves a strip of it along the top edge.
+    trim: { top: 0.16 },
+  },
+  { id: 'pc-interior-lit', out: 'hobbies', src: `${DL}/IMG_8624.png`, cutout: false },
+  { id: 'pc-cooler-gpu', out: 'hobbies', src: `${DL}/IMG_8622.png`, cutout: false },
+  { id: 'pc-intake-fans', out: 'hobbies', src: `${DL}/IMG_8623.png`, cutout: false },
 ]
 
 // Square, not 4:3. The subjects are a mix of portrait (standing figures) and
@@ -143,7 +170,44 @@ async function hardenAndCrop(png, floor) {
     .toBuffer()
 }
 
-for (const { id, out, src, preCrop, alphaFloor } of JOBS) {
+/**
+ * Drops the solid black bars a phone screenshot carries above and below the
+ * photo. sharp's .trim() keys off the top-left pixel and gives up as soon as a
+ * single row is not uniform, so the bar under a dark photo survives it. Measure
+ * the first and last row holding any channel above the noise floor instead.
+ */
+async function trimLetterbox(buf) {
+  const { data, info } = await sharp(buf).removeAlpha().raw().toBuffer({ resolveWithObject: true })
+  const { width, height, channels } = info
+
+  let top = -1
+  let bottom = -1
+
+  for (let y = 0; y < height; y++) {
+    let max = 0
+    for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * channels
+      const v = Math.max(data[i], data[i + 1], data[i + 2])
+      if (v > max) max = v
+    }
+    // JPEG-ish noise puts a black bar a few levels off zero, so 24 rather than 0.
+    if (max > 24) {
+      if (top < 0) top = y
+      bottom = y
+    }
+  }
+
+  if (bottom < 0) throw new Error('frame is entirely black')
+  if (top === 0 && bottom === height - 1) return buf
+
+  console.log(`  letterbox: kept rows ${top}..${bottom} of ${height}`)
+  return sharp(buf)
+    .extract({ left: 0, top, width, height: bottom - top + 1 })
+    .png()
+    .toBuffer()
+}
+
+for (const { id, out, src, preCrop, alphaFloor, cutout = true, position = 'centre', trim } of JOBS) {
   if (ONLY.size && !ONLY.has(id)) continue
   console.log(`\n=== ${id}`)
 
@@ -169,16 +233,45 @@ for (const { id, out, src, preCrop, alphaFloor } of JOBS) {
 
     const oriented = await pipe.resize({ width: 1600, withoutEnlargement: true }).png().toBuffer()
 
-    // Pass a Blob, not a path — the library treats a bare string as a URL and
-    // chokes on `C:\`.
-    const blob = await removeBackground(new Blob([oriented], { type: 'image/png' }), {
-      output: { format: 'image/png' },
-    })
+    let subject
+    if (cutout) {
+      // Pass a Blob, not a path — the library treats a bare string as a URL and
+      // chokes on `C:\`.
+      // Imported here, not at the top: a `cutout: false` job needs nothing but
+      // sharp, and a static import would make it drag onnxruntime in to do
+      // nothing with it.
+      const { removeBackground } = await import('@imgly/background-removal-node')
 
-    const subject = await hardenAndCrop(
-      Buffer.from(await blob.arrayBuffer()),
-      alphaFloor ?? DEFAULT_ALPHA_FLOOR,
-    )
+      const blob = await removeBackground(new Blob([oriented], { type: 'image/png' }), {
+        output: { format: 'image/png' },
+      })
+
+      subject = await hardenAndCrop(
+        Buffer.from(await blob.arrayBuffer()),
+        alphaFloor ?? DEFAULT_ALPHA_FLOOR,
+      )
+    } else {
+      subject = await trimLetterbox(oriented)
+
+      if (trim) {
+        // Fractions of each edge to drop, measured off the de-letterboxed
+        // frame rather than the original — the bars are gone by this point and
+        // a fraction of the raw screenshot would mean something else entirely.
+        const m = await sharp(subject).metadata()
+        const left = Math.round(m.width * (trim.left ?? 0))
+        const top = Math.round(m.height * (trim.top ?? 0))
+        subject = await sharp(subject)
+          .extract({
+            left,
+            top,
+            width: m.width - left - Math.round(m.width * (trim.right ?? 0)),
+            height: m.height - top - Math.round(m.height * (trim.bottom ?? 0)),
+          })
+          .png()
+          .toBuffer()
+      }
+    }
+
     const meta = await sharp(subject).metadata()
     console.log(`  subject ${meta.width}x${meta.height}`)
 
@@ -187,17 +280,22 @@ for (const { id, out, src, preCrop, alphaFloor } of JOBS) {
       const pad = Math.round((size - inner) / 2)
       const dest = path.join(dir, `${id}-${suffix}.webp`)
 
-      await sharp(subject)
-        .resize(inner, inner, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
-        .extend({
-          top: pad,
-          bottom: size - inner - pad,
-          left: pad,
-          right: size - inner - pad,
-          background: { r: 0, g: 0, b: 0, alpha: 0 },
-        })
-        .webp({ quality: 82, alphaQuality: 90, effort: 5 })
-        .toFile(dest)
+      // A cutout is inset so the subject does not touch the tile edge. A photo
+      // is the opposite: it fills the square edge to edge, because a gap around
+      // a photograph reads as a mistake rather than as breathing room.
+      const canvas = cutout
+        ? sharp(subject)
+            .resize(inner, inner, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+            .extend({
+              top: pad,
+              bottom: size - inner - pad,
+              left: pad,
+              right: size - inner - pad,
+              background: { r: 0, g: 0, b: 0, alpha: 0 },
+            })
+        : sharp(subject).resize(size, size, { fit: 'cover', position })
+
+      await canvas.webp({ quality: 82, alphaQuality: 90, effort: 5 }).toFile(dest)
 
       const { size: bytes } = await fs.stat(dest)
       console.log(`  ${suffix}: ${Math.round(bytes / 1024)} KB`)

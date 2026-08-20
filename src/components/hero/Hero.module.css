@@ -92,10 +92,26 @@
 .name {
   font-family: var(--font-display);
   font-weight: var(--w-black);
-  font-size: var(--step-4);
+  /*
+   * min(), not the bare step: at the top of its clamp the name is already almost
+   * as wide as a phone, so the looser tracking below tips it onto a second line
+   * at 390px and costs the scroll cue another 43px of the fold. 10.5vw is a
+   * no-op above ~530px, where the clamp is the smaller of the two anyway.
+   */
+  font-size: min(var(--step-4), 10.5vw);
   line-height: 0.92;
-  letter-spacing: -0.045em;
+  /*
+   * -0.045em was tight enough that neighbouring caps touched at the top of the
+   * scale ("M" into "P"), and it subtracted from the word space as well, so
+   * "SHUBHAM PURI" set as one run. Back off the tracking and buy the word gap
+   * back explicitly, since letter-spacing applies to the space glyph too.
+   */
+  letter-spacing: -0.025em;
+  word-spacing: 0.16em;
   text-transform: uppercase;
+  /* Negative tracking also trims the advance of the LAST glyph, which clips the
+   * right edge of the gradient fill. One character of slack puts it back. */
+  padding-right: 0.05em;
   background: linear-gradient(96deg, var(--text) 30%, var(--accent) 75%, var(--accent-2) 100%);
   -webkit-background-clip: text;
   background-clip: text;
