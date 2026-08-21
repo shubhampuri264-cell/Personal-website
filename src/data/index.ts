@@ -28,16 +28,6 @@ export {
 export const featuredProjects = projects.filter((p) => p.tier === 'featured')
 export const moreProjects = projects.filter((p) => p.tier === 'more')
 
-const byRank = (a: BountyItem, b: BountyItem) => (a.rank ?? 99) - (b.rank ?? 99)
-
-/** Top items for a section's arrow-rail. The rail is a shortcut, never the only path. */
-export function railItems(items: BountyItem[], limit = 3): BountyItem[] {
-  return items
-    .filter((i) => i.featured)
-    .sort(byRank)
-    .slice(0, limit)
-}
-
 const allItems: BountyItem[] = [...experience, ...projects, ...hackathons]
 
 export function itemBySlug(slug: string): BountyItem | undefined {

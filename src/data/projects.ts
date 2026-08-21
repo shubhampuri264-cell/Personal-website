@@ -29,10 +29,11 @@ export const projects: Project[] = [
       'Made the retention loop and the revenue loop the same system: XP, quests and an avatar that evolves with training, with cosmetics as the paid unlock.',
     ],
     tech: ['React Native', 'Expo', 'FastAPI', 'PostgreSQL', 'Groq', 'RevenueCat', 'Claude Code'],
-    links: [
-      { kind: 'github', label: 'View Source', href: `${GH}/Agon`, external: true },
-      { kind: 'demo', label: 'Watch Demo', href: '2zBenlABcxA', portrait: true },
-    ],
+    /* No source link. The repo is private and staying private, and a "View
+       Source" button that 404s costs more than the missing button does: it
+       makes a reader doubt the four links that do work. The demo carries the
+       proof instead. */
+    links: [{ kind: 'demo', label: 'Watch Demo', href: '2zBenlABcxA', portrait: true }],
     media: { youtubeId: '2zBenlABcxA' },
     featured: true,
     rank: 1,
@@ -196,14 +197,13 @@ export const projects: Project[] = [
       'Ran every generated suite in a throwaway Docker container, so untrusted repository code never touches the host.',
     ],
     tech: ['Python', 'LangGraph', 'tree-sitter', 'GitHub API', 'Docker'],
-    links: [
-      {
-        kind: 'github',
-        label: 'View Source',
-        href: `${GH}/Autonomous-Code-Review-Testing-Agent`,
-        external: true,
-      },
-    ],
+    /* No source link, by decision. The card carries a case study that says
+       what was built and why; a repository link is the one part of that a
+       reader can be sent to before it is ready to be read. If the repo is
+       opened up later the URL is `${GH}/Autonomous-Code-Review-Testing-Agent.`.
+       That trailing period is part of the real repository name rather than a
+       typo here, so rename the repo on GitHub before restoring the link. */
+    links: [],
     featured: true,
     rank: 5,
     status: 'in-progress',
@@ -237,7 +237,9 @@ export const projects: Project[] = [
     bounty: { value: 'TOP 4', unit: 'of 83 hackathon teams' },
     summary:
       'A bilingual AI mental health companion with anonymous peer support, built for stigma-free early detection.',
-    bullets: [],
+    bullets: [
+      'Paired a Gemini-backed screening conversation with an anonymous peer feed, so a user who scores high has somewhere to go without having to identify themselves.',
+    ],
     tech: ['React', 'JavaScript', 'Supabase', 'Gemini API'],
     links: [
       { kind: 'github', label: 'View Source', href: `${GH}/Mental-Health-Web-App`, external: true },
@@ -255,7 +257,9 @@ export const projects: Project[] = [
     bounty: { value: 'LIVE', unit: 'realtime event sync' },
     summary:
       'A React Native platform for discovering local events, with geolocation safety tracking and built-in chat.',
-    bullets: [],
+    bullets: [
+      'Supabase realtime drives the event feed and the in-app chat from the same subscription, so a plan that changes updates on every attendee phone without a refresh.',
+    ],
     tech: ['React Native', 'TypeScript', 'Supabase', 'SQL'],
     links: [
       { kind: 'github', label: 'View Source', href: `${GH}/Local-Hangout-Event`, external: true },
@@ -273,7 +277,9 @@ export const projects: Project[] = [
     bounty: { value: '99%', unit: 'match accuracy' },
     summary:
       'Real-time face encoding and matching extended into an automated attendance pipeline with identity verification.',
-    bullets: [],
+    bullets: [
+      'Matched live face encodings against a known roster and wrote straight to the attendance record, so the loop from camera frame to marked-present runs with nobody in it.',
+    ],
     tech: ['Python', 'OpenCV', 'Face Recognition'],
     links: [
       {
@@ -293,10 +299,14 @@ export const projects: Project[] = [
     title: 'Distributed Risk Engine',
     subtitle: 'Financial risk metrics at scale',
     dates: { start: '2025-09', end: '2025-11', display: '2025' },
-    bounty: { value: 'N-node', unit: 'distributed compute' },
+    /* No bounty. "N-node distributed compute" was a description dressed as a
+       measurement, and a fake number next to four real ones devalues the real
+       ones. Better to show nothing than to show a placeholder. */
     summary:
       'A distributed system for calculating financial risk metrics behind a FastAPI service and an interactive dashboard.',
-    bullets: [],
+    bullets: [
+      'Spread the calculation across worker processes behind a FastAPI service, with the dashboard reading the same endpoints any other client would.',
+    ],
     tech: ['Python', 'FastAPI', 'JavaScript', 'HTML/CSS'],
     links: [
       {

@@ -50,6 +50,18 @@
   max-width: 60ch;
 }
 
+/*
+ * Dimmer than .desc on purpose. The summary is the headline of the row and the
+ * detail is the supporting line, so they have to read in that order at a
+ * glance; same size at the same colour would make the row look like two
+ * competing sentences.
+ */
+.detail {
+  font-size: var(--step--1);
+  color: var(--text-dim);
+  max-width: 60ch;
+}
+
 .tech {
   display: flex;
   flex-wrap: wrap;

@@ -1,7 +1,6 @@
-import { experience, railItems } from '@/data'
+import { experience } from '@/data'
 import { Section } from '@/components/layout/Section'
 import { BountyGrid } from '@/components/bounty/BountyGrid'
-import { BountyRail } from '@/components/bounty/BountyRail'
 
 export function ExperienceSection({ focusedSlug }: { focusedSlug: string | null }) {
   return (
@@ -11,7 +10,9 @@ export function ExperienceSection({ focusedSlug }: { focusedSlug: string | null 
       title="Experience"
       intro="Four roles across product engineering, AI evaluation, teaching, and hardware support."
     >
-      <BountyRail items={railItems(experience)} label="Highlights" />
+      {/* No summary rail. It printed the same three numbers the first three
+          cards print immediately below it, at a fifth of the size, so a reader
+          met "100+ active learners" twice before learning anything new. */}
       <BountyGrid
         items={experience}
         sectionId="experience"

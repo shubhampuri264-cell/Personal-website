@@ -117,9 +117,13 @@ const JOBS = [
     // square crop alone leaves a strip of it along the top edge.
     trim: { top: 0.16 },
   },
-  { id: 'pc-interior-lit', out: 'hobbies', src: `${DL}/IMG_8624.png`, cutout: false },
-  { id: 'pc-cooler-gpu', out: 'hobbies', src: `${DL}/IMG_8622.png`, cutout: false },
   { id: 'pc-intake-fans', out: 'hobbies', src: `${DL}/IMG_8623.png`, cutout: false },
+  /*
+   * IMG_8624 (pc-interior-lit) and IMG_8622 (pc-cooler-gpu) were generated and
+   * then cut: near-duplicate angles on the same case under the same lighting.
+   * Left recorded here rather than deleted, so re-adding one is a paste rather
+   * than a hunt through the camera roll.
+   */
 ]
 
 // Square, not 4:3. The subjects are a mix of portrait (standing figures) and

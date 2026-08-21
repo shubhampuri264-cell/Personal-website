@@ -11,7 +11,10 @@ const img = (id: string, caption: string, alt: string) => ({
 })
 
 /**
- * Things that exist on a desk rather than in a repo.
+ * Hobby making, not engineering experience, and framed that way on the page.
+ * The value of the section is not the objects: it is that the teen curriculum
+ * in the Tech Mentor role runs on exactly these three things, so the photos are
+ * evidence for a paid role rather than a claim standing on its own.
  *
  * Every photo here was taken by me of a build I made. The backgrounds were cut
  * out so eleven phone photos taken across a year in three different rooms read
@@ -21,7 +24,7 @@ export const hardwareGroups: GalleryGroup[] = [
   {
     id: 'arduino',
     label: 'Arduino & Embedded',
-    blurb: 'Microcontrollers, breadboards and things that move on their own',
+    blurb: 'Breadboards, jumper wires and the kit the teens start on',
     accent: 'cyan',
     items: [
       img(
@@ -34,7 +37,10 @@ export const hardwareGroups: GalleryGroup[] = [
   {
     id: 'printing',
     label: '3D Printing',
-    blurb: 'Modelled, sliced and printed in PLA',
+    /* "Sliced, tuned and printed", not "modelled". The print settings, the
+       supports and the failed attempts before each of these are mine; claiming
+       the models are as well is a claim a reader can check and I cannot back. */
+    blurb: 'Sliced, tuned and printed in PLA',
     accent: 'fuchsia',
     items: [
       img(
@@ -72,7 +78,7 @@ export const hardwareGroups: GalleryGroup[] = [
   {
     id: 'lego',
     label: 'Lego & Robotics',
-    blurb: 'LEGO Education SPIKE Prime builds, programmed and driven',
+    blurb: 'SPIKE Prime kits, built and programmed',
     accent: 'green',
     items: [
       img(

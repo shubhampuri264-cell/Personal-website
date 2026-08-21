@@ -2,7 +2,7 @@
 
 Portfolio site for Shubham Puri, software engineer.
 
-**Live:** https://portfolio-mauve-seven-97.vercel.app/
+**Live:** https://spuridev.vercel.app/
 
 ## Stack
 

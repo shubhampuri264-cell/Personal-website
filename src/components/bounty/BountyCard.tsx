@@ -108,12 +108,16 @@ export function BountyCard({ item, sectionId, focused, onWatchDemo }: BountyCard
           )}
         </p>
 
-        {/* Slot 4 — the headline number. Always present. */}
-        <div className={styles.reward}>
-          <strong className={styles.rewardValue}>{item.bounty.value}</strong>
-          <span className={styles.rewardUnit}>{item.bounty.unit}</span>
-          {item.bounty.caption && <span className={styles.rewardCaption}>{item.bounty.caption}</span>}
-        </div>
+        {/* Slot 4 — the headline number, when there is a real one to show. */}
+        {item.bounty && (
+          <div className={styles.reward}>
+            <strong className={styles.rewardValue}>{item.bounty.value}</strong>
+            <span className={styles.rewardUnit}>{item.bounty.unit}</span>
+            {item.bounty.caption && (
+              <span className={styles.rewardCaption}>{item.bounty.caption}</span>
+            )}
+          </div>
+        )}
 
         {/* Slot 5 — summary, then bullets if there are any. */}
         <p className={styles.summary}>{item.summary}</p>

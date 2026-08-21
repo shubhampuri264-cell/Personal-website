@@ -54,7 +54,7 @@ export const doors: Door[] = [
     id: 'hardware',
     label: 'Hardware',
     path: '/hardware',
-    blurb: 'What I have built by hand',
+    blurb: 'Printer, breadboard, robot kit',
     count: '11',
     accent: 'cyan',
     order: 6,
@@ -64,7 +64,9 @@ export const doors: Door[] = [
     label: 'Hobbies',
     path: '/hobbies',
     blurb: 'Off the clock',
-    count: '01',
+    // Image count, matching Hardware's. It read '01' from when the gallery was
+    // a single placeholder and never moved when real photos landed.
+    count: '02',
     accent: 'fuchsia',
     order: 7,
   },

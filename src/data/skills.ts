@@ -44,7 +44,7 @@ export const skillGroups: SkillGroup[] = [
     blurb: 'Building with models, and testing them.',
     accent: 'green',
     skills: [
-      { name: 'Claude Code', icon: 'terminal', usedIn: ['Agon', 'Website'] },
+      { name: 'Claude Code', icon: 'terminal', usedIn: ['Agon'] },
       { name: 'Prompt Engineering', icon: 'terminal', usedIn: ['Outlier', 'Agon'] },
       { name: 'Agentic Workflows', icon: 'graph', usedIn: ['Code Review Agent'] },
       { name: 'LLM Evaluation', icon: 'chart', usedIn: ['Outlier'] },

@@ -42,15 +42,22 @@
   color: var(--text-dim);
 }
 
+/*
+ * auto-FILL, not auto-fit. auto-fit collapses the tracks it does not fill and
+ * hands their width to the ones it does, so a group holding fewer photos than
+ * the row has columns gets its tiles spread across the full width with holes
+ * between them. auto-fill keeps every track at its own size, so two photos sit
+ * side by side and the empty columns stay empty on the right where they read
+ * as a short row rather than as a layout fault.
+ */
 .grid {
   display: grid;
   gap: var(--sp-4);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
 }
 
-/* The cap is what stops a one-photo group from blowing its single tile up to
-   the full container width. auto-fit gives that group one full-width track;
-   the tile inside it stays a tile. */
+/* Belt and braces on the tile width. auto-fill already holds the track down;
+   this keeps a single-photo group's tile a tile if the track ever grows. */
 .cell {
   display: flex;
   max-width: 17rem;

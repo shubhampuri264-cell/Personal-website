@@ -6,20 +6,19 @@ import { ImageGrid } from '@/components/ui/ImageGrid'
 import { ImageLightbox } from '@/components/ui/ImageLightbox'
 
 /**
- * The work that does not live in a repo. Same reasoning as the Skills section:
- * a claim is worth more with the evidence attached, and for a build the evidence
- * is a photo of the thing running on a table.
+ * Filed under hobby builds, with no intro paragraph.
+ *
+ * A printer, a breadboard and a robotics kit are not engineering experience,
+ * and a section that implies otherwise invites a reader to discount the
+ * sections that are. The eyebrow does that job in two words. A paragraph
+ * explaining why hobby work is on the page would only draw attention to the
+ * question, so the photos are left to speak for themselves.
  */
 export function HardwareSection() {
   const [open, setOpen] = useState<GalleryImage | null>(null)
 
   return (
-    <Section
-      id="hardware"
-      eyebrow="What I have built by hand"
-      title="Hardware"
-      intro="Microcontrollers, 3D prints and robotics kits. Everything below is mine, photographed as built."
-    >
+    <Section id="hardware" eyebrow="Hobby builds" title="Hardware">
       <ImageGrid groups={hardwareGroups} onOpen={setOpen} />
       <ImageLightbox image={open} onClose={() => setOpen(null)} />
     </Section>

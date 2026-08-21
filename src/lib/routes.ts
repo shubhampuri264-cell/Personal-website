@@ -12,6 +12,14 @@ import type { SectionId } from '@/data/types'
  * no longer scrolls past the doors, and Ctrl+F no longer finds everything.
  */
 
+/**
+ * The canonical list of real sections, and the source of truth for two other
+ * files. `vercel.json` names these same eight in its SPA rewrite so that an
+ * unknown path falls through to a real HTTP 404 instead of quietly serving the
+ * homepage with a 200. Adding a section here without adding it there gives you
+ * a URL that works in dev and 404s in production, so `scripts/check-routes.mjs`
+ * compares the two and fails the build when they drift.
+ */
 export const SECTION_ORDER: SectionId[] = [
   'home',
   'experience',

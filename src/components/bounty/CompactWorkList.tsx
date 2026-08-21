@@ -21,6 +21,14 @@ export function CompactWorkList({ items }: { items: Project[] }) {
               <div className={styles.main}>
                 <p className={styles.name}>{item.title}</p>
                 <p className={styles.desc}>{item.summary}</p>
+                {/*
+                  One bullet, not all of them. The summary says what the thing
+                  is, which every row already had and which is why the section
+                  read as a list of titles. The bullet says what was actually
+                  built, which is the part a reader is here for. A second
+                  bullet would start competing with the featured posters above.
+                */}
+                {item.bullets[0] && <p className={styles.detail}>{item.bullets[0]}</p>}
                 <ul className={styles.tech}>
                   {item.tech.map((t) => (
                     <li key={t}>{t}</li>
@@ -28,10 +36,12 @@ export function CompactWorkList({ items }: { items: Project[] }) {
                 </ul>
               </div>
               <div className={styles.side}>
-                <span className={styles.stat}>
-                  <strong>{item.bounty.value}</strong>
-                  <span>{item.bounty.unit}</span>
-                </span>
+                {item.bounty && (
+                  <span className={styles.stat}>
+                    <strong>{item.bounty.value}</strong>
+                    <span>{item.bounty.unit}</span>
+                  </span>
+                )}
                 {source && (
                   <a
                     href={source.href}

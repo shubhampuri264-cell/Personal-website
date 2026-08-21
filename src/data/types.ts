@@ -114,14 +114,22 @@ export interface BountyItem {
   subtitle: string
   location?: string
   dates: DateRange
-  bounty: Bounty
+  /**
+   * Optional. Omit it rather than inventing one: a card with no number reads as
+   * a project without a measurable outcome, which is honest, while a card with
+   * a made-up number devalues every real number on the page.
+   */
+  bounty?: Bounty
   summary: string
   bullets: string[]
   tech: string[]
   links: Link[]
-  /** Eligible for the featured arrow-rail above the grid. */
+  /**
+   * Both are inert since the arrow-rail was removed. Left in place because they
+   * are set on every item and are the natural inputs if a "top three" surface
+   * ever comes back.
+   */
   featured: boolean
-  /** Rail ordering; lower comes first. */
   rank?: number
   status?: 'shipped' | 'in-progress' | 'archived'
   /** Renders as a collapsed section on the card. Rare by design — see `CaseStudy`. */

@@ -10,7 +10,7 @@
       name="description"
       content="Shubham Puri is a software engineer in New York. Full-stack and AI product work: shipped apps to real users, production booking platforms, on-device ML, and agentic tooling."
     />
-    <link rel="canonical" href="https://portfolio-mauve-seven-97.vercel.app/" />
+    <link rel="canonical" href="https://spuridev.vercel.app/" />
 
     <meta property="og:type" content="profile" />
     <meta property="og:title" content="Shubham Puri | Software Engineer" />
@@ -24,15 +24,64 @@
       blank. Dimensions are declared so the scraper reserves the right box
       before it has finished downloading the image.
     -->
-    <meta property="og:image" content="https://portfolio-mauve-seven-97.vercel.app/og.png" />
+    <meta property="og:image" content="https://spuridev.vercel.app/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
       content="Shubham Puri, software engineer. Open to entry-level software engineering roles."
     />
-    <meta property="og:url" content="https://portfolio-mauve-seven-97.vercel.app/" />
+    <meta property="og:url" content="https://spuridev.vercel.app/" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Structured data, so a search engine reads this page as a person rather
+      than as a wall of text. `sameAs` is the load-bearing part: it is what
+      tells Google that this domain, that GitHub account and that LinkedIn
+      profile are one person, which is how the three stop competing for the
+      same query and start reinforcing one result.
+
+      Keep the name, URL and email identical to the ones rendered on the page.
+      Structured data that disagrees with the visible content is treated as a
+      spam signal, not as extra information.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Shubham Puri",
+        "url": "https://spuridev.vercel.app/",
+        "email": "mailto:spur245@gmail.com",
+        "jobTitle": "Software Engineer",
+        "description": "Software engineer in New York. Full-stack and AI product work: shipped apps to real users, production booking platforms, on-device ML, and agentic tooling.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "New York",
+          "addressRegion": "NY",
+          "addressCountry": "US"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "New York Institute of Technology",
+          "sameAs": "https://www.nyit.edu/"
+        },
+        "knowsAbout": [
+          "Software Engineering",
+          "Full-Stack Web Development",
+          "Python",
+          "TypeScript",
+          "React",
+          "React Native",
+          "FastAPI",
+          "PostgreSQL",
+          "Machine Learning"
+        ],
+        "sameAs": [
+          "https://github.com/shubhampuri264-cell",
+          "https://www.linkedin.com/in/spuri-cs"
+        ]
+      }
+    </script>
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

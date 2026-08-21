@@ -4,7 +4,7 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/((?!assets/|images/|fonts/|certificates/|.*\\.[a-zA-Z0-9]+$).*)",
+      "source": "/(experience|projects|skills|education|hackathons|hardware|hobbies|contact)(/[^/]+)?",
       "destination": "/index.html"
     }
   ],

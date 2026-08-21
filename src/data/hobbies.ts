@@ -25,21 +25,17 @@ export const hobbyGroups: GalleryGroup[] = [
     label: 'PC Build',
     blurb: 'Specced, assembled and cable-managed by hand',
     accent: 'cyan',
+    /*
+     * Two frames, not four. The other two were the same case from a slightly
+     * different angle under a different colour of the same lighting, and a
+     * gallery of near-duplicates reads as padding. One wide shot of the build
+     * and one detail shot is the whole argument.
+     */
     items: [
       img(
         'pc-full-build',
         'The finished build',
         'The interior of a white PC case lit green, showing a white air cooler, a white Radeon graphics card, two RGB fans on the right panel and more fans below the power supply shroud',
-      ),
-      img(
-        'pc-interior-lit',
-        'RGB across the RAM, the fans and the card',
-        'A close view inside the case under blue and magenta light, with memory sticks lit through the cooler, a white XFX Radeon card across the middle and two RGB fans on the right',
-      ),
-      img(
-        'pc-cooler-gpu',
-        'Cooler fan and the card, side on',
-        'The cooler fan glowing magenta above a white XFX Radeon graphics card, with the case interior lit purple around them',
       ),
       img(
         'pc-intake-fans',
