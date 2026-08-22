@@ -106,19 +106,20 @@ export const projects: Project[] = [
     kind: 'project',
     tier: 'featured',
     title: 'Salon Booking Platform',
-    subtitle: 'Production web app for a real business',
+    subtitle: 'Production web app running a real business',
     dates: { start: '2025-01', end: '2025-08', display: '2025' },
     bounty: { value: 'LIVE', unit: 'running in production' },
     summary:
-      'A booking platform built from scratch for a salon owner with no technical background, and now the system that runs the business.',
+      'A booking platform built from scratch for a salon owner with no technical background, and now the system that runs the business: booking, admin, automated email, and an assistant that answers questions and books appointments.',
     bullets: [
-      'Translated a non-technical owner’s requirements into scoped features, then owned architecture through deployment solo.',
-      'Built an admin dashboard for service and stylist management on a typed Node/Supabase backend, so the owner changes prices and hours without calling me.',
+      'Made double booking impossible in the database with a btree_gist exclusion constraint, after finding that the row lock an earlier migration relied on locks nothing when the slot is free.',
+      'Built an admin dashboard for services, stylists, hours and pricing on a typed Node and Supabase backend, so the owner changes prices without calling me.',
+      'Shipped Iris, a booking assistant on a Supabase Edge Function, where menu taps resolve with zero model calls, so the site still books and cancels with the AI provider unreachable.',
     ],
-    tech: ['TypeScript', 'Node.js', 'Supabase', 'PostgreSQL', 'REST API', 'Vercel'],
+    tech: ['TypeScript', 'Node.js', 'PostgreSQL', 'Supabase', 'Deno', 'Anthropic API', 'Vercel'],
     links: [
       { kind: 'github', label: 'View Source', href: `${GH}/SalonWebsite`, external: true },
-      { kind: 'live', label: 'Live Demo', href: 'https://icon-studio-nu.vercel.app', external: true },
+      { kind: 'live', label: 'Live Site', href: 'https://iconht.studio', external: true },
       { kind: 'demo', label: 'Watch Demo', href: 'nKB7OJ09o9g' },
     ],
     media: { youtubeId: 'nKB7OJ09o9g' },
@@ -131,14 +132,15 @@ export const projects: Project[] = [
       constraint:
         'She has no technical background and no interest in acquiring one. If the system needed me in the loop to change a price or add a stylist, it would fail the first week I got busy with something else. Whatever I built had to be fully operable by somebody who was never going to read documentation.',
       attempts: [
-        'First cut was a booking form writing straight to the database, with the service list hardcoded. It worked on day one and made me the bottleneck for every price change she wanted after that.',
-        'So I pulled services, stylists, hours and pricing out into data and built an admin UI over the top. That roughly doubled the build, and it is the only reason the system still runs without me in it.',
+        'First cut was a booking form writing straight to the database, with the service list hardcoded. It worked on day one and made me the bottleneck for every price change she wanted after that. So I pulled services, stylists, hours and pricing out into data and built an admin UI over the top. That roughly doubled the build, and it is the only reason the system still runs without me in it.',
         'Requirements turned out to be the harder half. She described her business, not software, so asking her to specify features produced nothing usable. I switched to building small pieces and showing them to her instead. Almost every correction that mattered came from her reacting to something real on a screen.',
+        'Double booking was supposed to be handled by a row lock inside the booking function. Rereading it months later I realised it locks only the rows it returns, and when the slot is free that is zero rows, so two people booking the same slot at the same moment would both be told yes. The fix moved the guarantee into the database as an exclusion constraint. Postgres now rejects the overlap itself rather than the application trying to notice it in time.',
+        'Iris, the chat assistant, is built so the model is the last resort rather than the first. Menu taps resolve with no model call at all, free text passes a deterministic filter and a cheap classifier before anything expensive runs, and with the API key unset the menu still books, cancels, reschedules and quotes prices. The assistant is an addition to the site and never a dependency of it, which is the only version of it I was willing to put in front of her customers.',
       ],
       shipped:
-        'A booking platform in production, currently running a real business. Admin dashboard for services, stylists and availability on a typed Node and Supabase backend, deployed on Vercel, with the owner running day to day operations herself.',
+        'In production, running a real salon. Booking wizard, customer accounts, an admin dashboard the owner operates herself, a daily job that sends reminders and review follow-ups, and Iris on a Supabase Edge Function. Underneath: eighteen SQL migrations with rollbacks, thirteen rate limiters that fail closed, Sentry on both client and server, a sixty-nine case eval set for the assistant, and CI running typecheck, lint and two test suites on every push.',
       next:
-        'There is no automated reminder flow, so no-shows are recorded rather than prevented. It is the one feature she asked for that I cut to ship on time, and it is the first thing I would add. Cutting it was the right call for the deadline and it is still the biggest gap in the product.',
+        'Those eighteen migrations are applied by hand through the Supabase SQL editor, with a script that reports drift but cannot fix it. It has not caused an incident because exactly one person applies them, and it will the first time that stops being true. A real migration runner in CI is the next piece of work, and it is much cheaper to add before that incident than after it.',
     },
   },
   {
